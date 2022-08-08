@@ -22,21 +22,17 @@ function App() {
       <Sidebar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/bookings" element={<Bookings />}>
-          <Route path="/:id" element={<Booking />} />
-          <Route path="/new" element={<NewBooking />} />
-        </Route>
-        <Route path="/rooms" element={<Rooms />}>
-          <Route path="/:id" element={<Room />} />
-          <Route path="/new" element={<NewRoom />} />
-        </Route>
-        <Route path="/users" element={<Users />}>
-          <Route path="/:id" element={<User />} />
-          <Route path="/new" element={<NewUser />} />
-        </Route>
-        <Route path="/contact" element={<Messages />}>
-          <Route path="/:id" element={<Message />} />
-        </Route>
+        <Route path="bookings" element={<Bookings />} />
+        <Route path="bookings/:id" element={<Booking />} />
+        <Route path="bookings/new" element={<NewBooking />} />
+        <Route path="rooms" element={<Rooms />} />
+        <Route path="rooms/:id" element={<Room />} />
+        <Route path="rooms/new" element={<NewRoom />} />
+        <Route path="users" element={<Users />} />
+        <Route path="users/:id" element={<User />} />
+        <Route path="users/new" element={<NewUser />} />
+        <Route path="contact" element={<Messages />} />
+        <Route path="contact/:id" element={<Message />} />
       </Routes>
     </div>
   );
