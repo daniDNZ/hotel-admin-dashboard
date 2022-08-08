@@ -9,9 +9,8 @@
     "roomType": "Regal",
     "roomNumber": 51,
     "status": "checkout",
-    "price": "€4739,41",
+    "price": "4739,41",
     "amenities": "Free Wifi",
-    "photos": "http://dummyimage.com/x.png/dddddd/000000",
     "description": "convallis tortor risus dapibus augue vel accumsan tellus nisi eu orci mauris lacinia sapien quis libero nullam sit amet turpis elementum ligula vehicula consequat morbi a ipsum integer a nibh in quis justo maecenas rhoncus aliquam lacus morbi"
   },
   {
@@ -24,9 +23,8 @@
     "roomType": "Pathfinder",
     "roomNumber": 46,
     "status": "checkin",
-    "price": "€3992,31",
+    "price": "3992,31",
     "amenities": "Free Wifi",
-    "photos": "http://dummyimage.com/x.png/ff4444/ffffff",
     "description": "montes nascetur ridiculus mus vivamus vestibulum sagittis sapien cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus etiam vel augue vestibulum rutrum rutrum neque aenean"
   },
   {
@@ -39,9 +37,8 @@
     "roomType": "Express 3500",
     "roomNumber": 65,
     "status": "checkout",
-    "price": "€1477,67",
+    "price": "1477,67",
     "amenities": "3 Bed Space",
-    "photos": "http://dummyimage.com/x.png/cc0000/ffffff",
     "description": "sollicitudin ut suscipit a feugiat et eros vestibulum ac est lacinia nisi venenatis tristique fusce congue diam id ornare imperdiet sapien urna pretium nisl ut volutpat sapien arcu sed augue aliquam erat volutpat in congue etiam"
   },
   {
@@ -54,9 +51,8 @@
     "roomType": "Reno",
     "roomNumber": 96,
     "status": "checkin",
-    "price": "€83,59",
+    "price": "83,59",
     "amenities": "2 Bathroom",
-    "photos": "http://dummyimage.com/x.png/ff4444/ffffff",
     "description": "amet consectetuer adipiscing elit proin interdum mauris non ligula pellentesque ultrices phasellus id sapien in sapien iaculis congue vivamus metus arcu adipiscing molestie hendrerit at vulputate vitae nisl aenean lectus pellentesque eget nunc donec quis orci eget orci vehicula condimentum"
   },
   {
@@ -69,9 +65,8 @@
     "roomType": "Grand Prix",
     "roomNumber": 10,
     "status": "checkin",
-    "price": "€920,33",
+    "price": "920,33",
     "amenities": "3 Bed Space",
-    "photos": "http://dummyimage.com/x.png/5fa2dd/ffffff",
     "description": "curabitur in libero ut massa volutpat convallis morbi odio odio elementum eu interdum eu tincidunt in leo maecenas"
   },
   {
@@ -84,9 +79,8 @@
     "roomType": "Mustang",
     "roomNumber": 25,
     "status": "inprogress",
-    "price": "€2088,66",
+    "price": "2088,66",
     "amenities": "Television",
-    "photos": "http://dummyimage.com/x.png/dddddd/000000",
     "description": "id nulla ultrices aliquet maecenas leo odio condimentum id luctus nec molestie sed justo pellentesque viverra pede ac diam"
   },
   {
@@ -99,9 +93,8 @@
     "roomType": "LTD Crown Victoria",
     "roomNumber": 48,
     "status": "checkin",
-    "price": "€4222,60",
+    "price": "4222,60",
     "amenities": "24 Hours Guard",
-    "photos": "http://dummyimage.com/x.png/5fa2dd/ffffff",
     "description": "id massa id nisl venenatis lacinia aenean sit amet justo morbi ut odio cras mi pede"
   },
   {
@@ -114,9 +107,8 @@
     "roomType": "M Roadster",
     "roomNumber": 46,
     "status": "checkout",
-    "price": "€3149,52",
+    "price": "3149,52",
     "amenities": "Air Conditioner",
-    "photos": "http://dummyimage.com/x.png/dddddd/000000",
     "description": "tempus semper est quam pharetra magna ac consequat metus sapien ut nunc vestibulum"
   },
   {
@@ -129,9 +121,8 @@
     "roomType": "I",
     "roomNumber": 13,
     "status": "inprogress",
-    "price": "€3695,41",
+    "price": "3695,41",
     "amenities": "Free Wifi",
-    "photos": "http://dummyimage.com/x.png/5fa2dd/ffffff",
     "description": "vel sem sed sagittis nam congue risus semper porta volutpat quam pede lobortis ligula sit amet eleifend pede libero quis orci nullam molestie"
   },
   {
@@ -144,9 +135,8 @@
     "roomType": "5000S",
     "roomNumber": 19,
     "status": "checkin",
-    "price": "€566,21",
+    "price": "566,21",
     "amenities": "Free Wifi",
-    "photos": "http://dummyimage.com/x.png/5fa2dd/ffffff",
     "description": "ultrices posuere cubilia curae duis faucibus accumsan odio curabitur convallis duis consequat dui nec nisi volutpat eleifend donec ut dolor morbi vel lectus in quam fringilla rhoncus mauris enim leo"
   },
   {
@@ -159,9 +149,8 @@
     "roomType": "E-Series",
     "roomNumber": 52,
     "status": "checkin",
-    "price": "€1781,63",
+    "price": "1781,63",
     "amenities": "Free Wifi",
-    "photos": "http://dummyimage.com/x.png/dddddd/000000",
     "description": "eget tincidunt eget tempus vel pede morbi porttitor lorem id ligula suspendisse ornare consequat lectus in est risus auctor sed tristique in tempus sit amet sem fusce consequat nulla"
   },
   {
@@ -174,9 +163,8 @@
     "roomType": "200",
     "roomNumber": 76,
     "status": "checkout",
-    "price": "€768,37",
+    "price": "768,37",
     "amenities": "Air Conditioner",
-    "photos": "http://dummyimage.com/x.png/dddddd/000000",
     "description": "aliquet maecenas leo odio condimentum id luctus nec molestie sed justo pellentesque viverra pede ac diam cras pellentesque volutpat dui maecenas"
   },
   {
@@ -189,9 +177,8 @@
     "roomType": "S4",
     "roomNumber": 7,
     "status": "inprogress",
-    "price": "€4865,77",
+    "price": "4865,77",
     "amenities": "Air Conditioner",
-    "photos": "http://dummyimage.com/x.png/cc0000/ffffff",
     "description": "vestibulum quam sapien varius ut blandit non interdum in ante vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae duis faucibus accumsan odio curabitur convallis duis consequat dui nec nisi volutpat"
   },
   {
@@ -204,9 +191,8 @@
     "roomType": "Endeavor",
     "roomNumber": 11,
     "status": "checkin",
-    "price": "€106,64",
+    "price": "106,64",
     "amenities": "Television",
-    "photos": "http://dummyimage.com/x.png/cc0000/ffffff",
     "description": "mi integer ac neque duis bibendum morbi non quam nec dui luctus rutrum nulla tellus in sagittis dui"
   },
   {
@@ -219,9 +205,8 @@
     "roomType": "C8",
     "roomNumber": 26,
     "status": "checkin",
-    "price": "€4987,13",
+    "price": "4987,13",
     "amenities": "Air Conditioner",
-    "photos": "http://dummyimage.com/x.png/5fa2dd/ffffff",
     "description": "at nibh in hac habitasse platea dictumst aliquam augue quam sollicitudin vitae consectetuer eget rutrum at lorem integer tincidunt"
   },
   {
@@ -234,9 +219,8 @@
     "roomType": "Range Rover Sport",
     "roomNumber": 38,
     "status": "checkout",
-    "price": "€3045,82",
+    "price": "3045,82",
     "amenities": "Television",
-    "photos": "http://dummyimage.com/x.png/ff4444/ffffff",
     "description": "diam erat fermentum justo nec condimentum neque sapien placerat ante nulla justo aliquam quis turpis eget elit sodales scelerisque mauris sit amet eros suspendisse"
   },
   {
@@ -249,9 +233,8 @@
     "roomType": "Cabriolet",
     "roomNumber": 6,
     "status": "checkin",
-    "price": "€3699,41",
+    "price": "3699,41",
     "amenities": "Free Wifi",
-    "photos": "http://dummyimage.com/x.png/5fa2dd/ffffff",
     "description": "eleifend donec ut dolor morbi vel lectus in quam fringilla rhoncus mauris enim leo rhoncus sed vestibulum"
   },
   {
@@ -264,9 +247,8 @@
     "roomType": "Tempo",
     "roomNumber": 72,
     "status": "checkin",
-    "price": "€2819,27",
+    "price": "2819,27",
     "amenities": "2 Bathroom",
-    "photos": "http://dummyimage.com/x.png/ff4444/ffffff",
     "description": "amet erat nulla tempus vivamus in felis eu sapien cursus vestibulum proin eu mi nulla ac enim in tempor turpis nec euismod scelerisque"
   },
   {
@@ -279,9 +261,8 @@
     "roomType": "Explorer Sport",
     "roomNumber": 65,
     "status": "checkin",
-    "price": "€2076,82",
+    "price": "2076,82",
     "amenities": "3 Bed Space",
-    "photos": "http://dummyimage.com/x.png/5fa2dd/ffffff",
     "description": "lacinia eget tincidunt eget tempus vel pede morbi porttitor lorem id ligula suspendisse ornare consequat lectus in est risus auctor"
   },
   {
@@ -294,9 +275,8 @@
     "roomType": "SJ",
     "roomNumber": 27,
     "status": "checkout",
-    "price": "€1518,64",
+    "price": "1518,64",
     "amenities": "Air Conditioner",
-    "photos": "http://dummyimage.com/x.png/ff4444/ffffff",
     "description": "quis odio consequat varius integer ac leo pellentesque ultrices mattis odio donec vitae nisi nam ultrices libero non mattis pulvinar nulla pede ullamcorper augue a suscipit nulla elit ac nulla sed vel enim sit amet nunc viverra dapibus nulla suscipit"
   }
 ]
