@@ -27,6 +27,7 @@
                     ".jsx"
                 ]
             }
-        ]
+        ],
+        "react/prop-types": "off"
     }
 }
