@@ -24,6 +24,12 @@ const SidebarContainer = styled.div`
   box-shadow: 13px 3px 40px #00000005;
 
   padding-top: 32px;
+
+  display: block;
+
+  &.hide{
+    display: none;
+  }
 `;
 
 const NavItem = styled.li`
@@ -121,7 +127,7 @@ function Sidebar() {
   }, [location]);
 
   return (
-    <SidebarContainer>
+    <SidebarContainer id="sidebar">
       <Logo />
       <ul>
         <NavItem id="dashboard">
@@ -168,7 +174,7 @@ function Sidebar() {
       </UserContainer>
       <SidebarFooter>
         <span className="sidebar-footer__name">Travl Hotel Admin Dashboard</span>
-        <span className="sidebar-footer__copy">© All Rights Reserved</span>
+        <span className="sidebar-footer__copy">© 2022 All Rights Reserved</span>
       </SidebarFooter>
     </SidebarContainer>
   );

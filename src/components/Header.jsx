@@ -1,22 +1,56 @@
+import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
+import colors from '../style/colors';
+import icons from '../style/icons';
 
 const HeaderContainer = styled.header`
-  display: inline;
+  box-shadow: 0px 3px 10px #00000005;
+
+  padding: 40px;
+
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+
+  & .header{
+    &__left {
+      display: flex;
+    }
+    &__right {
+      display: flex;
+
+      & button {
+        color: ${colors.hardGreen};
+      }
+    }
+    &__current-page {
+      font-size: 22px;
+      font-weight: 600;
+      line-height: 42px;
+    }
+  }
 `;
 
-export default function Header() {
+export default function Header({ setAuth }) {
+  const location = useLocation();
+  const pathname = location.pathname.split('/')[1];
+  const path = pathname === '' ? 'Dashboard' : pathname.charAt(0).toUpperCase() + pathname.slice(1);
+
+  const toggleMenu = () => {
+    const sidebar = document.querySelector('#sidebar');
+    if (sidebar.classList.contains('hide')) sidebar.classList.remove('hide');
+    else sidebar.classList.add('hide');
+  };
   return (
     <HeaderContainer>
-      <div>
-        <i>Menu-i (flechas) </i>
-        <b>Dashboard (change)</b>
+      <div className="header__left">
+        <button type="button" onClick={toggleMenu}>{icons.menu}</button>
+        <span className="header__current-page">{path}</span>
       </div>
-      <div>
-        <i>Contact-i</i>
-        {' '}
-        <i>Bell-i</i>
-        {' '}
-        <i>LogOut-i</i>
+      <div className="header__right">
+        <button type="button">{icons.message}</button>
+        <button type="button">{icons.bell}</button>
+        <button type="button" onClick={() => setAuth(false)}>{icons.logout}</button>
       </div>
     </HeaderContainer>
   );
