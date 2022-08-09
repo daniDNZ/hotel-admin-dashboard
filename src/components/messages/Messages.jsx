@@ -1,4 +1,4 @@
-import messagesData from '../../data/messages.json';
+import messagesData from '../../assets/data/messages.json';
 
 function Messages() {
   return (

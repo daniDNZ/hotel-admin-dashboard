@@ -1,11 +1,29 @@
 import { Link } from 'react-router-dom';
-import bookingsData from '../../data/bookings.json';
+import bookingsData from '../../assets/data/bookings.json';
 
 function Bookings() {
   return (
     <div>
       <h1>Bookings</h1>
-      <Link to="234">Link</Link>
+      <div>
+        <ul>
+          <li><button type="button">All Bookings</button></li>
+          <li><button type="button">Checking In</button></li>
+          <li><button type="button">Checking Out</button></li>
+          <li><button type="button">In Progress</button></li>
+        </ul>
+        <div>
+          <input type="search" name="customerName" id="customerName" placeholder="Search..." />
+          <div>
+            <select name="sortBookings" id="sortBookings" defaultValue="date">
+              <option value="guest">Guest</option>
+              <option value="date">Order Date</option>
+              <option value="checkIn">Check In</option>
+              <option value="checkOut">Check Out</option>
+            </select>
+          </div>
+        </div>
+      </div>
       <table>
         <thead>
           <tr>
@@ -47,10 +65,10 @@ function Bookings() {
                   {booking.checkOut}
                 </td>
                 <td>
-                  <button type="button">View Notes</button>
+                  <button type="button"><Link to={`${booking.id}`}>View Notes</Link></button>
                 </td>
                 <td>
-                  {`${booking.roomType} ${booking.roomNumber}`}
+                  {`${booking.type} ${booking.number}`}
                 </td>
                 <td>
                   {booking.status}
@@ -63,6 +81,10 @@ function Bookings() {
           }
         </tbody>
       </table>
+      <div>
+        <span>Showing 10 of x Data</span>
+        <div>Pagination</div>
+      </div>
     </div>
   );
 }

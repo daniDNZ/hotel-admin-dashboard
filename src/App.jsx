@@ -1,12 +1,8 @@
 import {
   Navigate, Route, Routes, useLocation,
 } from 'react-router-dom';
-import './App.css';
-
 import { useState, useEffect } from 'react';
 import Login from './components/Login';
-// import Header from './components/Header';
-// import Sidebar from './components/Sidebar';
 import Message from './components/messages/Message';
 import Messages from './components/messages/Messages';
 import NewRoom from './components/rooms/NewRoom';

@@ -1,4 +1,4 @@
-import usersData from '../../data/users.json';
+import usersData from '../../assets/data/users.json';
 
 function Users() {
   return (

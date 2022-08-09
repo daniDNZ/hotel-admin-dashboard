@@ -1,4 +1,4 @@
-import roomsData from '../../data/rooms.json';
+import roomsData from '../../assets/data/rooms.json';
 
 function Rooms() {
   return (

@@ -9,7 +9,7 @@ function Login({ setAuth }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (inputs.user === 'admin' && inputs.password === 'admin') {
+    if (inputs.user === 'mrainforth0@theguardian.com' && inputs.password === 'm0sah4TV') {
       setAuth(true);
       navigate(from, { replace: true });
     } else {
@@ -32,9 +32,9 @@ function Login({ setAuth }) {
         <input type="password" name="password" placeholder="pass" onChange={handleChange} />
         <button type="submit">Login</button>
       </form>
-      <span>Usuario: admin</span>
+      <span>Usuario: mrainforth0@theguardian.com</span>
       <br />
-      <span>Contraseña: admin</span>
+      <span>Contraseña: m0sah4TV</span>
     </>
   );
 }

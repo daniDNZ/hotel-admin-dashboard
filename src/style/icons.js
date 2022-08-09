@@ -1,0 +1,27 @@
+import styled from 'styled-components';
+import { ReactComponent as DashboardIcon } from '../assets/svg/dashboardIcon.svg';
+import { ReactComponent as BookingsIcon } from '../assets/svg/bookingsIcon.svg';
+import { ReactComponent as RoomsIcon } from '../assets/svg/roomsIcon.svg';
+import { ReactComponent as ContactIcon } from '../assets/svg/contactIcon.svg';
+import { ReactComponent as UsersIcon } from '../assets/svg/usersIcon.svg';
+
+const Icon = styled.i`
+  position: relative;
+  margin-right: 44px;
+  & svg {
+    width: 24px;
+    height: 24px;
+
+    position: absolute;
+  }
+`;
+
+const icons = {
+  dashboard: <Icon><DashboardIcon /></Icon>,
+  bookings: <Icon><BookingsIcon /></Icon>,
+  rooms: <Icon><RoomsIcon /></Icon>,
+  contact: <Icon><ContactIcon /></Icon>,
+  users: <Icon><UsersIcon /></Icon>,
+};
+
+export default icons;
