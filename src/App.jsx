@@ -28,12 +28,12 @@ function RequireAuth({ auth, children }) {
 
 function App() {
   const [auth, setAuth] = useState(localStorage.getItem('auth') !== null);
+
   useEffect(() => {
-    if (auth) {
-      localStorage.setItem('auth', '1');
-    }
-    localStorage.removeItem('auth');
+    if (auth) localStorage.setItem('auth', '1');
+    else localStorage.removeItem('auth');
   }, [auth]);
+
   return (
     <Routes>
       <Route

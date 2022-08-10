@@ -6,7 +6,7 @@ import Sidebar from './Sidebar';
 
 const AppWrapper = styled.div`
   min-width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-flow: row nowrap;
   justify-content: flex-start;

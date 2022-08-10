@@ -55,6 +55,10 @@ const NavItem = styled.li`
       top: 0;
     }
   }
+
+  & i {
+    margin-right: 22px;
+  }
 `;
 
 const UserContainer = styled.div`

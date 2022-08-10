@@ -238,5 +238,17 @@
     "offer": true,
     "discount": 24,
     "cancellation": "purus sit amet nulla quisque arcu libero rutrum ac lobortis vel dapibus at diam nam tristique"
+  },
+  {
+    "id": 21,
+    "type": "S-Class",
+    "number": 33,
+    "price": "200,57",
+    "amenities": "Television",
+    "photos": "http://dummyimage.com/x.png/5fa2dd/ffffff",
+    "description": "quisque ut erat curabitur gravida nisi at nibh in hac habitasse platea dictumst",
+    "offer": true,
+    "discount": 24,
+    "cancellation": "purus sit amet nulla quisque arcu libero rutrum ac lobortis vel dapibus at diam nam tristique"
   }
 ]

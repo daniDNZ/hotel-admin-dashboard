@@ -15,12 +15,17 @@ const HeaderContainer = styled.header`
   & .header{
     &__left {
       display: flex;
+      & button {
+        margin-right: 22px;
+      }
     }
     &__right {
       display: flex;
 
       & button {
         color: ${colors.hardGreen};
+
+        margin-right: 22px;
       }
     }
     &__current-page {
