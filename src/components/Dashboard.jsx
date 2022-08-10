@@ -2,6 +2,7 @@ import icons from '../style/icons';
 import { Kpi, KpiRow } from './common/Kpi';
 import bookingsData from '../assets/data/bookings.json';
 import roomsData from '../assets/data/rooms.json';
+import { MessagesRow } from './common/Message';
 
 function Dashboard() {
   const getOccupationPercentage = () => {
@@ -34,14 +35,7 @@ function Dashboard() {
         <Kpi data={{ icon: icons.checkIn, number: getCheckIns(), text: 'Check In' }} />
         <Kpi data={{ icon: icons.checkOut, number: getCheckOuts(), text: 'Check Out' }} />
       </KpiRow>
-      <div>
-        <h2>Latest Reviews by Customers</h2>
-        <div>
-          <div>Message</div>
-          <div>Message</div>
-          <div>Message</div>
-        </div>
-      </div>
+      <MessagesRow />
     </>
   );
 }

@@ -18,7 +18,7 @@ const Logo = styled.div`
 `;
 
 const SidebarContainer = styled.div`
-  min-width: 345px;
+  max-width: 345px;
   height: 100vh;
   background-color: #ffffff;
   box-shadow: 13px 3px 40px #00000005;

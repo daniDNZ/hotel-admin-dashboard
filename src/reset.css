@@ -129,8 +129,5 @@ body {
   -moz-osx-font-smoothing: grayscale;
 
   background-color: white;
-
-  min-width: 320px;
-  max-width: 1920px;
   margin: 0 auto;
 }

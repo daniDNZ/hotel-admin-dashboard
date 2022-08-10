@@ -11,6 +11,10 @@ import { ReactComponent as LogoutIcon } from '../assets/svg/logoutIcon.svg';
 import { ReactComponent as Bed } from '../assets/svg/bed.svg';
 import { ReactComponent as CheckIn } from '../assets/svg/checkIn.svg';
 import { ReactComponent as CheckOut } from '../assets/svg/checkOut.svg';
+import { ReactComponent as Cancel } from '../assets/svg/cancel.svg';
+import { ReactComponent as CheckCircle } from '../assets/svg/check-circle.svg';
+import { ReactComponent as LeftArrow } from '../assets/svg/leftArrow.svg';
+import { ReactComponent as RightArrow } from '../assets/svg/rightArrow.svg';
 
 const Icon = styled.i`
   min-width: 48px;
@@ -42,6 +46,10 @@ const icons = {
   bed: <Icon><Bed /></Icon>,
   checkIn: <Icon><CheckIn /></Icon>,
   checkOut: <Icon><CheckOut /></Icon>,
+  cancel: <Icon><Cancel /></Icon>,
+  checkCircle: <Icon><CheckCircle /></Icon>,
+  leftArrow: <Icon><LeftArrow /></Icon>,
+  rightArrow: <Icon><RightArrow /></Icon>,
 };
 
 export default icons;

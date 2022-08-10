@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import colors from '../../style/colors';
 
 const KpiItem = styled.div`
+  width: 340px;
+  min-width: 235px;
   background-color: white;
   box-shadow: 0px 4px 4px #00000005;
   border-radius: 12px;
@@ -49,11 +51,10 @@ const KpiItem = styled.div`
 `;
 
 const KpiContainer = styled.div`
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: 1fr;
-  grid-column-gap: 38px;
-  grid-row-gap: 0px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  gap: 40px;
 
   margin-bottom: 40px;
 `;
