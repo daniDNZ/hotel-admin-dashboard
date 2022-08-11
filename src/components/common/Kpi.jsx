@@ -57,6 +57,10 @@ const KpiContainer = styled.div`
   gap: 40px;
 
   margin-bottom: 40px;
+
+  @media only screen and (max-width: 1160px){
+    flex-wrap: wrap;
+  }
 `;
 
 function KpiRow({ children }) {

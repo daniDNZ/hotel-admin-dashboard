@@ -19,4 +19,6 @@ const Button = styled.button.attrs({ type: 'button' })`
   }
 `;
 
-export default Button;
+const Amenitie = styled.div`
+`;
+export { Button, Amenitie };

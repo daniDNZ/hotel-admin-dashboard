@@ -28,8 +28,13 @@ const Icon = styled.i`
     width: 24px;
     height: 24px;
 
+    margin: auto;
+
     position: absolute;
     left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
   }
 `;
 

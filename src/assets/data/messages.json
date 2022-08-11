@@ -17,7 +17,7 @@
     "phone": "+86-523-378-9670",
     "subject": "nisi nam ultrices libero non mattis pulvinar nulla",
     "comment": "duis aliquam convallis nunc proin at turpis a pede posuere nonummy integer non velit donec diam",
-    "status": false
+    "status": true
   },
   {
     "id": 3,
@@ -57,7 +57,7 @@
     "phone": "+387-857-423-6066",
     "subject": "auctor sed tristique in tempus sit amet sem",
     "comment": "eros viverra eget congue eget semper rutrum nulla nunc purus phasellus in felis donec semper sapien a",
-    "status": false
+    "status": true
   },
   {
     "id": 7,

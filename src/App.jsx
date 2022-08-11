@@ -3,7 +3,6 @@ import {
 } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Login from './components/Login';
-import Message from './components/messages/Message';
 import Messages from './components/messages/Messages';
 import NewRoom from './components/rooms/NewRoom';
 import Room from './components/rooms/Room';
@@ -53,7 +52,6 @@ function App() {
                 <Route path="users/:id" element={<User />} />
                 <Route path="users/new" element={<NewUser />} />
                 <Route path="contact" element={<Messages />} />
-                <Route path="contact/:id" element={<Message />} />
               </Route>
             </Routes>
           </RequireAuth>

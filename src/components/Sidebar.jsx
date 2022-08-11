@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import logo from '../assets/img/logo.png';
 import colors from '../style/colors';
 import icons from '../style/icons';
-import Button from '../style/styledComponents';
+import { Button } from '../style/styledComponents';
 
 const Logo = styled.div`
   width: 220px;
