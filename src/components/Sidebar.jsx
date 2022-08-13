@@ -18,14 +18,19 @@ const Logo = styled.div`
 `;
 
 const SidebarContainer = styled.div`
-  max-width: 345px;
-  height: 100vh;
+  width: 345px;
+  height: 100%;
   background-color: #ffffff;
   box-shadow: 13px 3px 40px #00000005;
 
   padding-top: 32px;
 
   display: block;
+  // Absoluto por problemas con flex y swiper
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1000;
 
   &.hide{
     display: none;

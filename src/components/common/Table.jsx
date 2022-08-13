@@ -62,8 +62,25 @@ const TableTabs = styled.div`
   & .table-tabs__list{
 
     & li {
+      color: ${colors.gray};
+      border-bottom: 2px solid ${colors.borderGray};
+
       padding: 13px 23px;
+
+      &.active-table-tab {
+        color: ${colors.hardGreen};
+        border-color: ${colors.hardGreen};
+      }
     }
+  }
+
+  & input[type=search]{
+    background-color: white;
+    border-radius: 10px;
+    border: 2px solid ${colors.green};
+
+    padding: 10px;
+    margin-right: 20px;
   }
 `;
 

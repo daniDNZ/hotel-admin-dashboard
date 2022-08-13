@@ -5,6 +5,7 @@ import icons from '../style/icons';
 
 const HeaderContainer = styled.header`
   box-shadow: 0px 3px 10px #00000005;
+  background-color: white;
 
   padding: 40px;
 
@@ -43,8 +44,14 @@ export default function Header({ setAuth }) {
 
   const toggleMenu = () => {
     const sidebar = document.querySelector('#sidebar');
-    if (sidebar.classList.contains('hide')) sidebar.classList.remove('hide');
-    else sidebar.classList.add('hide');
+    const contentContainer = document.querySelector('#contentContainer');
+    if (sidebar.classList.contains('hide')) {
+      sidebar.classList.remove('hide');
+      contentContainer.classList.remove('remove-padding-left');
+    } else {
+      sidebar.classList.add('hide');
+      contentContainer.classList.add('remove-padding-left');
+    }
   };
   return (
     <HeaderContainer>

@@ -58,7 +58,7 @@ const KpiContainer = styled.div`
 
   margin-bottom: 40px;
 
-  @media only screen and (max-width: 1160px){
+  @media only screen and (max-width: 1500px){
     flex-wrap: wrap;
   }
 `;

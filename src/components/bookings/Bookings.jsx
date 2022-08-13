@@ -10,17 +10,36 @@ function Bookings() {
   const navigate = useNavigate();
   const [modalData, setModalData] = useState('');
   const [openModal, setOpenModal] = useState(false);
+  // const [sortValue, setSortValue] = useState('orderDate');
   const [selectedData, setSelectedData] = useState(
     bookingsData.sort((a, b) => new Date(b.orderDate) - new Date(a.orderDate)),
   );
 
-  const showAllBookings = () => {
-    setSelectedData(bookingsData);
+  const filterBookings = (e) => {
+    const value = e.target.textContent;
+    let data = bookingsData;
+
+    const activeItem = document.querySelector('li.active-table-tab');
+    activeItem.classList.remove('active-table-tab');
+    e.target.parentNode.classList.add('active-table-tab');
+    switch (value) {
+      case 'Checking In':
+        break;
+      case 'Checking Out':
+        break;
+      case 'In Progress':
+        data = bookingsData.filter((booking) => booking.status === 'inprogress');
+        break;
+      default:
+        data = bookingsData;
+        break;
+    }
+    setSelectedData(data);
   };
 
-  const showInProgress = () => {
-    setSelectedData(bookingsData.filter((booking) => booking.status === 'inprogress'));
-  };
+  // const showInProgress = () => {
+  //   setSelectedData(bookingsData.filter((booking) => booking.status === 'inprogress'));
+  // };
 
   const showByCustomer = (e) => {
     const { value } = e.target;
@@ -35,7 +54,7 @@ function Bookings() {
     const { value } = e.target;
 
     switch (value) {
-      case 'guest':
+      case 'fullName':
         bookingsData.sort((a, b) => a.fullName[0].localeCompare(b.fullName[0]));
         break;
       case 'checkIn':
@@ -44,7 +63,7 @@ function Bookings() {
       case 'checkOut':
         bookingsData.sort((a, b) => new Date(b.checkOut) - new Date(a.checkOut));
         break;
-      case 'date':
+      case 'orderDate':
       default:
         bookingsData.sort((a, b) => new Date(b.orderDate) - new Date(a.orderDate));
         break;
@@ -61,22 +80,33 @@ function Bookings() {
     setModalData(data);
   };
 
+  // Preguntar a John
+  // useEffect(() => {
+  //   bookingsData.sort((a, b) => {
+  //     console.log(a[sortValue] - b[sortValue]);
+  //     if (a[sortValue] - b[sortValue] < 0) return -1;
+  //     if (a[sortValue] - b[sortValue] === 0) return 0;
+  //     return 1;
+  //   });
+  //   setSelectedData([...bookingsData]);
+  // }, [sortValue]);
+
   useEffect(() => {}, [selectedData]);
   return (
     <div>
       <TableTabs>
         <ul className="table-tabs__list">
-          <li><button type="button" onClick={showAllBookings}>All Bookings</button></li>
-          <li><button type="button">Checking In</button></li>
-          <li><button type="button">Checking Out</button></li>
-          <li><button type="button" onClick={showInProgress}>In Progress</button></li>
+          <li className="active-table-tab"><button type="button" onClick={filterBookings}>All Bookings</button></li>
+          <li><button type="button" onClick={filterBookings}>Checking In</button></li>
+          <li><button type="button" onClick={filterBookings}>Checking Out</button></li>
+          <li><button type="button" onClick={filterBookings}>In Progress</button></li>
         </ul>
         <div className="table-tabs__sort">
           <input type="search" name="customerName" id="customerName" placeholder="Search..." onChange={showByCustomer} />
           <div>
-            <select name="sortBookings" id="sortBookings" defaultValue="date" onChange={sortBookings}>
-              <option value="guest">Guest</option>
-              <option value="date">Order Date</option>
+            <select name="sortBookings" id="sortBookings" defaultValue="orderDate" onChange={sortBookings}>
+              <option value="fullName">Guest</option>
+              <option value="orderDate">Order Date</option>
               <option value="checkIn">Check In</option>
               <option value="checkOut">Check Out</option>
             </select>
