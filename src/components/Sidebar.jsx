@@ -136,7 +136,7 @@ function Sidebar() {
   }, [location]);
 
   return (
-    <SidebarContainer id="sidebar">
+    <SidebarContainer id="sidebar" data-cy="sidebar">
       <Logo />
       <ul>
         <NavItem id="dashboard">

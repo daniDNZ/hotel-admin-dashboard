@@ -56,7 +56,7 @@ export default function Header({ setAuth }) {
   return (
     <HeaderContainer>
       <div className="header__left">
-        <button type="button" onClick={toggleMenu}>{icons.menu}</button>
+        <button type="button" onClick={toggleMenu} data-cy="menuButton">{icons.menu}</button>
         <span className="header__current-page">{path}</span>
       </div>
       <div className="header__right">
