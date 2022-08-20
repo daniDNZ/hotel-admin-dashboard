@@ -1,5 +1,20 @@
 import styled from 'styled-components';
 import colors from './colors';
+import logo from '../assets/img/logo.png';
+
+const Logo = styled.div`
+  width: 220px;
+  height: 57px;
+  background-image: url(${logo});
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  margin-top: ${(props) => props.margin.top};
+  margin-right: ${(props) => props.margin.right};
+  margin-bottom: ${(props) => props.margin.bottom};
+  margin-left: ${(props) => props.margin.left};
+`;
 
 const Button = styled.button.attrs({ type: 'button' })`
   font-size: 14px;
@@ -21,4 +36,4 @@ const Button = styled.button.attrs({ type: 'button' })`
 
 const Amenitie = styled.div`
 `;
-export { Button, Amenitie };
+export { Logo, Button, Amenitie };

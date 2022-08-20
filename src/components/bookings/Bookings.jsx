@@ -4,7 +4,7 @@ import bookingsData from '../../assets/data/bookings.json';
 import roomsData from '../../assets/data/rooms.json';
 import { Button } from '../../style/styledComponents';
 import Modal from '../common/Modal';
-import { Table, TableTabs } from '../common/Table';
+import { Table, TableTabs, activeTableTabs } from '../common/Table';
 
 function Bookings() {
   const navigate = useNavigate();
@@ -19,9 +19,8 @@ function Bookings() {
     const value = e.target.textContent;
     let data = bookingsData;
 
-    const activeItem = document.querySelector('li.active-table-tab');
-    activeItem.classList.remove('active-table-tab');
-    e.target.parentNode.classList.add('active-table-tab');
+    activeTableTabs(e.target.parentNode);
+
     switch (value) {
       case 'Checking In':
         break;

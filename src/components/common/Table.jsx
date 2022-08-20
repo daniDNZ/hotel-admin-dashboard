@@ -84,6 +84,14 @@ const TableTabs = styled.div`
   }
 `;
 
+// Functions
+const activeTableTabs = (parent) => {
+  const activeItem = document.querySelector('li.active-table-tab');
+  activeItem.classList.remove('active-table-tab');
+  parent.classList.add('active-table-tab');
+};
+
+// Component
 function Table({ children }) {
   return (
     <TableWrapper>
@@ -94,4 +102,4 @@ function Table({ children }) {
   );
 }
 
-export { Table, TableTabs };
+export { Table, TableTabs, activeTableTabs };

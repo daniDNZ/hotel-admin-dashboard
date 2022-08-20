@@ -1,15 +1,33 @@
 import usersData from '../../assets/data/users.json';
+import { Table, TableTabs, activeTableTabs } from '../common/Table';
 
 function Users() {
+  const filterUsers = (e) => {
+    activeTableTabs(e.target.parentNode);
+  };
+  const sortUsers = (e) => e;
+  const showByUser = (e) => e;
   return (
     <div>
-      <h1>Users</h1>
-      <table>
+      <TableTabs>
+        <ul className="table-tabs__list">
+          <li className="active-table-tab"><button type="button" onClick={filterUsers}>All Employee</button></li>
+          <li><button type="button" onClick={filterUsers}>Active Employee</button></li>
+          <li><button type="button" onClick={filterUsers}>Inactive Employee</button></li>
+        </ul>
+        <div className="table-tabs__sort">
+          <input type="search" name="userName" id="userName" placeholder="Search..." onChange={showByUser} />
+          <div>
+            <select name="sortBookings" id="sortBookings" defaultValue="startDate" onChange={sortUsers}>
+              <option value="startDate">Start Date</option>
+              <option value="fullName">Name</option>
+            </select>
+          </div>
+        </div>
+      </TableTabs>
+      <Table>
         <thead>
           <tr>
-            <th>
-              <input type="checkbox" />
-            </th>
             <th>Photo</th>
             <th>Full Name</th>
             <th>ID</th>
@@ -24,9 +42,6 @@ function Users() {
           {
             usersData.map((user) => (
               <tr key={user.id}>
-                <td>
-                  <input type="checkbox" id={user.id} />
-                </td>
                 <td>
                   <img src={user.photo} alt={`${user.fullName} profile pic`} />
                   {user.photo}
@@ -60,7 +75,7 @@ function Users() {
             ))
           }
         </tbody>
-      </table>
+      </Table>
     </div>
   );
 }

@@ -1,5 +1,41 @@
 import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+import colors from '../style/colors';
+import { Button, Logo } from '../style/styledComponents';
+
+const LoginBackground = styled.div`
+  height: 100vh;
+  background-color: ${colors.bgGray};
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const LoginContainer = styled.div`
+  width: fit-content;
+  background-color: white;
+  border-radius: 18px;
+
+  padding: 40px 30px;
+
+  & form {
+    margin-bottom: 30px;
+  }
+
+  & input {
+    border: 2px solid ${colors.borderGray};
+    border-radius: 8px;
+    
+    padding: 10px 20px;
+    margin-bottom: 20px;
+  }
+`;
+
+const LoginButton = styled(Button).attrs({
+  type: 'submit',
+})``;
 
 function Login({ setAuth }) {
   const [inputs, setInputs] = useState({});
@@ -25,17 +61,22 @@ function Login({ setAuth }) {
     setInputs((values) => ({ ...values, [name]: value }));
   };
   return (
-    <>
-      <h1>login</h1>
-      <form onSubmit={handleSubmit}>
-        <input type="text" name="user" placeholder="user" onChange={handleChange} />
-        <input type="password" name="password" placeholder="pass" onChange={handleChange} />
-        <button type="submit">Login</button>
-      </form>
-      <span>Usuario: mrainforth0@theguardian.com</span>
-      <br />
-      <span>Contraseña: m0sah4TV</span>
-    </>
+    <LoginBackground>
+      <LoginContainer>
+        <Logo margin={{
+          top: 0, right: 'auto', bottom: '40px', left: 'auto',
+        }}
+        />
+        <form onSubmit={handleSubmit}>
+          <input type="text" name="user" placeholder="User" onChange={handleChange} />
+          <input type="password" name="password" placeholder="Pass" onChange={handleChange} />
+          <LoginButton green>Login</LoginButton>
+        </form>
+        <span>Usuario: mrainforth0@theguardian.com</span>
+        <br />
+        <span>Contraseña: m0sah4TV</span>
+      </LoginContainer>
+    </LoginBackground>
   );
 }
 

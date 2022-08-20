@@ -1,15 +1,32 @@
 import roomsData from '../../assets/data/rooms.json';
+import { Table, TableTabs, activeTableTabs } from '../common/Table';
 
 function Rooms() {
+  const filterRooms = (e) => {
+    activeTableTabs(e.target.parentNode);
+  };
+  const sortRooms = (e) => e;
   return (
     <div>
-      <h1>Rooms</h1>
-      <table>
+      <TableTabs>
+        <ul className="table-tabs__list">
+          <li className="active-table-tab"><button type="button" onClick={filterRooms}>All Rooms</button></li>
+          <li><button type="button" onClick={filterRooms}>Available</button></li>
+          <li><button type="button" onClick={filterRooms}>Occuped</button></li>
+        </ul>
+        <div className="table-tabs__sort">
+          <div>
+            <select name="sortBookings" id="sortBookings" defaultValue="number" onChange={sortRooms}>
+              <option value="number">Number</option>
+              <option value="lowerPrice">$</option>
+              <option value="highestPrice">$$$</option>
+            </select>
+          </div>
+        </div>
+      </TableTabs>
+      <Table>
         <thead>
           <tr>
-            <th>
-              <input type="checkbox" />
-            </th>
             <th>Room Name</th>
             <th>Room Type</th>
             <th>Room Number</th>
@@ -23,9 +40,6 @@ function Rooms() {
           {
             roomsData.map((room) => (
               <tr key={room.id}>
-                <td>
-                  <input type="checkbox" id={room.id} />
-                </td>
                 <td>
                   <span>
                     #
@@ -67,7 +81,7 @@ function Rooms() {
             ))
           }
         </tbody>
-      </table>
+      </Table>
     </div>
   );
 }

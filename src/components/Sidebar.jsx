@@ -1,21 +1,9 @@
 import { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
-import logo from '../assets/img/logo.png';
 import colors from '../style/colors';
 import icons from '../style/icons';
-import { Button } from '../style/styledComponents';
-
-const Logo = styled.div`
-  width: 220px;
-  height: 57px;
-  background-image: url(${logo});
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-
-  margin: 0 48px 62px;
-`;
+import { Button, Logo } from '../style/styledComponents';
 
 const SidebarContainer = styled.div`
   width: 345px;
@@ -137,7 +125,10 @@ function Sidebar() {
 
   return (
     <SidebarContainer id="sidebar">
-      <Logo />
+      <Logo margin={{
+        top: 0, right: '48px', bottom: '62px', left: '48px',
+      }}
+      />
       <ul>
         <NavItem id="dashboard">
           <Link to="/">
