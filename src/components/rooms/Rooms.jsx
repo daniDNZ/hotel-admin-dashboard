@@ -1,25 +1,52 @@
+import { useState, useEffect } from 'react';
 import roomsData from '../../assets/data/rooms.json';
 import { Table, TableTabs, activeTableTabs } from '../common/Table';
 
 function Rooms() {
-  const filterRooms = (e) => {
-    activeTableTabs(e.target.parentNode);
+  const [roomsState, setRoomsState] = useState([]);
+  const [orderBy, setOrderBy] = useState('orderDate');
+  const [filterBy, setFilterBy] = useState('type');
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const handleTabClick = (filter, value, parentNode) => {
+    activeTableTabs(parentNode);
+    setFilterBy(filter);
+    setSearchTerm(value);
   };
-  const sortRooms = (e) => e;
+
+  useEffect(() => {
+    const orderedFilteredRooms = roomsData.filter(
+      (room) => room[filterBy].toLowerCase().includes(searchTerm.toLowerCase()),
+    );
+    orderedFilteredRooms.sort((a, b) => {
+      if (orderBy === 'lowerPrice') {
+        if (parseFloat(a.price) > parseFloat(b.price)) return 1;
+        if (parseFloat(a.price) < parseFloat(b.price)) return -1;
+      } else if (orderBy === 'higherPrice') {
+        if (parseFloat(a.price) > parseFloat(b.price)) return -1;
+        if (parseFloat(a.price) < parseFloat(b.price)) return 1;
+      } else {
+        if (a[orderBy] > b[orderBy]) return 1;
+        if (a[orderBy] < b[orderBy]) return -1;
+      }
+      return 0;
+    });
+    setRoomsState(orderedFilteredRooms);
+  }, [roomsData, orderBy, searchTerm]);
   return (
     <div>
       <TableTabs>
         <ul className="table-tabs__list">
-          <li className="active-table-tab"><button type="button" onClick={filterRooms}>All Rooms</button></li>
-          <li><button type="button" onClick={filterRooms}>Available</button></li>
-          <li><button type="button" onClick={filterRooms}>Occuped</button></li>
+          <li className="active-table-tab"><button type="button" onClick={(e) => handleTabClick('type', '', e.target.parentNode)}>All Rooms</button></li>
+          <li><button type="button" onClick={(e) => handleTabClick('type', '', e.target.parentNode)}>Available</button></li>
+          <li><button type="button" onClick={(e) => handleTabClick('type', '', e.target.parentNode)}>Occuped</button></li>
         </ul>
         <div className="table-tabs__sort">
           <div>
-            <select name="sortBookings" id="sortBookings" defaultValue="number" onChange={sortRooms}>
+            <select name="sortRooms" id="sortRooms" defaultValue="number" onChange={(e) => setOrderBy(e.target.value)}>
               <option value="number">Number</option>
               <option value="lowerPrice">$</option>
-              <option value="highestPrice">$$$</option>
+              <option value="higherPrice">$$$</option>
             </select>
           </div>
         </div>
@@ -38,7 +65,7 @@ function Rooms() {
         </thead>
         <tbody>
           {
-            roomsData.map((room) => (
+            roomsState.map((room) => (
               <tr key={room.id}>
                 <td>
                   <span>

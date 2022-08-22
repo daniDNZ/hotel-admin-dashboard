@@ -10,65 +10,10 @@ function Bookings() {
   const navigate = useNavigate();
   const [modalData, setModalData] = useState('');
   const [openModal, setOpenModal] = useState(false);
-  // const [sortValue, setSortValue] = useState('orderDate');
-  const [selectedData, setSelectedData] = useState(
-    bookingsData.sort((a, b) => new Date(b.orderDate) - new Date(a.orderDate)),
-  );
-
-  const filterBookings = (e) => {
-    const value = e.target.textContent;
-    let data = bookingsData;
-
-    activeTableTabs(e.target.parentNode);
-
-    switch (value) {
-      case 'Checking In':
-        break;
-      case 'Checking Out':
-        break;
-      case 'In Progress':
-        data = bookingsData.filter((booking) => booking.status === 'inprogress');
-        break;
-      default:
-        data = bookingsData;
-        break;
-    }
-    setSelectedData(data);
-  };
-
-  // const showInProgress = () => {
-  //   setSelectedData(bookingsData.filter((booking) => booking.status === 'inprogress'));
-  // };
-
-  const showByCustomer = (e) => {
-    const { value } = e.target;
-    setSelectedData(
-      bookingsData.filter(
-        (booking) => booking.fullName.toLowerCase().includes(value.toLowerCase()),
-      ),
-    );
-  };
-
-  const sortBookings = (e) => {
-    const { value } = e.target;
-
-    switch (value) {
-      case 'fullName':
-        bookingsData.sort((a, b) => a.fullName[0].localeCompare(b.fullName[0]));
-        break;
-      case 'checkIn':
-        bookingsData.sort((a, b) => new Date(b.checkIn) - new Date(a.checkIn));
-        break;
-      case 'checkOut':
-        bookingsData.sort((a, b) => new Date(b.checkOut) - new Date(a.checkOut));
-        break;
-      case 'orderDate':
-      default:
-        bookingsData.sort((a, b) => new Date(b.orderDate) - new Date(a.orderDate));
-        break;
-    }
-    setSelectedData([...bookingsData]);
-  };
+  const [bookingsState, setBookingsState] = useState([]);
+  const [orderBy, setOrderBy] = useState('orderDate');
+  const [filterBy, setFilterBy] = useState('fullName');
+  const [searchTerm, setSearchTerm] = useState('');
 
   const goToBooking = (e, booking) => {
     if (e.target.type !== 'button') { navigate(`${booking}`); }
@@ -79,31 +24,45 @@ function Bookings() {
     setModalData(data);
   };
 
-  // Preguntar a John
-  // useEffect(() => {
-  //   bookingsData.sort((a, b) => {
-  //     console.log(a[sortValue] - b[sortValue]);
-  //     if (a[sortValue] - b[sortValue] < 0) return -1;
-  //     if (a[sortValue] - b[sortValue] === 0) return 0;
-  //     return 1;
-  //   });
-  //   setSelectedData([...bookingsData]);
-  // }, [sortValue]);
+  const handleTabClick = (filter, value, parentNode) => {
+    activeTableTabs(parentNode);
+    setFilterBy(filter);
+    setSearchTerm(value);
+  };
 
-  useEffect(() => {}, [selectedData]);
+  const handleSearchChange = (filter, value) => {
+    setFilterBy(filter);
+    setSearchTerm(value);
+
+    const defaultTab = document.querySelector('#defaultTab');
+    activeTableTabs(defaultTab);
+  };
+
+  useEffect(() => {
+    const orderedFilteredBookings = bookingsData.filter(
+      (booking) => booking[filterBy].toLowerCase().includes(searchTerm.toLowerCase()),
+    );
+    orderedFilteredBookings.sort((a, b) => {
+      if (a[orderBy] > b[orderBy]) return 1;
+      if (a[orderBy] < b[orderBy]) return -1;
+      return 0;
+    });
+    setBookingsState(orderedFilteredBookings);
+  }, [bookingsData, orderBy, searchTerm]);
+
   return (
     <div>
       <TableTabs>
         <ul className="table-tabs__list">
-          <li className="active-table-tab"><button type="button" onClick={filterBookings}>All Bookings</button></li>
-          <li><button type="button" onClick={filterBookings}>Checking In</button></li>
-          <li><button type="button" onClick={filterBookings}>Checking Out</button></li>
-          <li><button type="button" onClick={filterBookings}>In Progress</button></li>
+          <li className="active-table-tab" id="defaultTab"><button type="button" onClick={(e) => { handleTabClick('fullName', '', e.target.parentNode); }}>All Bookings</button></li>
+          <li><button type="button" onClick={(e) => { handleTabClick('status', 'checkin', e.target.parentNode); }}>Checking In</button></li>
+          <li><button type="button" onClick={(e) => { handleTabClick('status', 'checkout', e.target.parentNode); }}>Checking Out</button></li>
+          <li><button type="button" onClick={(e) => { handleTabClick('status', 'inprogress', e.target.parentNode); }}>In Progress</button></li>
         </ul>
         <div className="table-tabs__sort">
-          <input type="search" name="customerName" id="customerName" placeholder="Search..." onChange={showByCustomer} />
+          <input type="search" name="customerName" id="customerName" placeholder="Search..." onChange={(e) => { handleSearchChange('fullName', e.target.value); }} />
           <div>
-            <select name="sortBookings" id="sortBookings" defaultValue="orderDate" onChange={sortBookings}>
+            <select name="sortBookings" id="sortBookings" defaultValue="orderDate" onChange={(e) => setOrderBy(e.target.value)}>
               <option value="fullName">Guest</option>
               <option value="orderDate">Order Date</option>
               <option value="checkIn">Check In</option>
@@ -127,7 +86,7 @@ function Bookings() {
         </thead>
         <tbody>
           {
-            selectedData.map((booking) => (
+            bookingsState.map((booking) => (
               <tr key={booking.id} onClick={(e) => goToBooking(e, booking.id)}>
                 <td>
                   <span>{booking.fullName}</span>
