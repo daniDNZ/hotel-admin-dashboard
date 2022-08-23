@@ -29,12 +29,12 @@ const AppWrapper = styled.div`
     padding: 50px;
   }
 `;
-function Layout({ setAuth }) {
+function Layout() {
   return (
     <AppWrapper>
       <Sidebar />
       <div id="contentContainer" className="content-container">
-        <Header setAuth={setAuth} />
+        <Header />
         <div className="padder">
           <Outlet />
         </div>

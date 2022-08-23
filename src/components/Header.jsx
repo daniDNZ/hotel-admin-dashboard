@@ -1,5 +1,7 @@
+import { useContext } from 'react';
 import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
+import { AuthContext } from '../context/AuthContextProvider';
 import colors from '../style/colors';
 import icons from '../style/icons';
 
@@ -37,7 +39,8 @@ const HeaderContainer = styled.header`
   }
 `;
 
-export default function Header({ setAuth }) {
+export default function Header() {
+  const { dispatchAuth } = useContext(AuthContext);
   const location = useLocation();
   const pathname = location.pathname.split('/')[1];
   const path = pathname === '' ? 'Dashboard' : pathname.charAt(0).toUpperCase() + pathname.slice(1);
@@ -62,7 +65,7 @@ export default function Header({ setAuth }) {
       <div className="header__right">
         <button type="button">{icons.message}</button>
         <button type="button">{icons.bell}</button>
-        <button type="button" onClick={() => setAuth(false)}>{icons.logout}</button>
+        <button type="button" onClick={() => dispatchAuth({ type: 'LOGOUT' })}>{icons.logout}</button>
       </div>
     </HeaderContainer>
   );

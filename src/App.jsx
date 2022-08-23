@@ -1,7 +1,5 @@
-import {
-  Navigate, Route, Routes, useLocation,
-} from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { Route, Routes } from 'react-router-dom';
+import { useEffect, useContext } from 'react';
 import Login from './components/Login';
 import Messages from './components/messages/Messages';
 import NewRoom from './components/rooms/NewRoom';
@@ -15,22 +13,13 @@ import Bookings from './components/bookings/Bookings';
 import NewBooking from './components/bookings/NewBooking';
 import Dashboard from './components/Dashboard';
 import Layout from './components/Layout';
-
-function RequireAuth({ auth, children }) {
-  const location = useLocation();
-  if (!auth) {
-    return <Navigate to="/login" state={{ from: location }} replace />;
-  }
-
-  return children;
-}
+import RequireAuth from './components/RequireAuth';
+import { AuthContext } from './context/AuthContextProvider';
 
 function App() {
-  const [auth, setAuth] = useState(localStorage.getItem('auth') !== null);
-
+  const { auth } = useContext(AuthContext);
   useEffect(() => {
-    if (auth) localStorage.setItem('auth', '1');
-    else localStorage.removeItem('auth');
+    localStorage.setItem('AUTH_DATA', JSON.stringify(auth));
   }, [auth]);
 
   return (
@@ -38,9 +27,9 @@ function App() {
       <Route
         path="/*"
         element={(
-          <RequireAuth auth={auth}>
+          <RequireAuth>
             <Routes>
-              <Route element={<Layout setAuth={setAuth} />}>
+              <Route element={<Layout />}>
                 <Route path="/" element={<Dashboard />} />
                 <Route path="bookings" element={<Bookings />} />
                 <Route path="bookings/:id" element={<Booking />} />
@@ -57,7 +46,7 @@ function App() {
           </RequireAuth>
         )}
       />
-      <Route path="login" element={<Login setAuth={setAuth} />} />
+      <Route path="login" element={<Login />} />
     </Routes>
   );
 }

@@ -1,8 +1,10 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import colors from '../style/colors';
 import { Button, Logo } from '../style/styledComponents';
+import usersData from '../assets/data/users.json';
+import { AuthContext } from '../context/AuthContextProvider';
 
 const LoginBackground = styled.div`
   height: 100vh;
@@ -25,6 +27,7 @@ const LoginContainer = styled.div`
   }
 
   & input {
+    width: 100%;
     border: 2px solid ${colors.borderGray};
     border-radius: 8px;
     
@@ -37,7 +40,8 @@ const LoginButton = styled(Button).attrs({
   type: 'submit',
 })``;
 
-function Login({ setAuth }) {
+function Login() {
+  const { dispatchAuth } = useContext(AuthContext);
   const [inputs, setInputs] = useState({});
   const navigate = useNavigate();
   const location = useLocation();
@@ -45,8 +49,9 @@ function Login({ setAuth }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (inputs.user === 'mrainforth0@theguardian.com' && inputs.password === 'm0sah4TV') {
-      setAuth(true);
+    const userData = usersData.find((object) => object.email === inputs.user);
+    if (userData !== undefined) {
+      dispatchAuth({ type: 'LOGIN', value: { username: userData.fullName, email: userData.email } });
       navigate(from, { replace: true });
     } else {
       // eslint-disable-next-line no-alert
