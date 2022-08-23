@@ -1,13 +1,17 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import bookingsData from '../../assets/data/bookings.json';
+// import bookingsData from '../../assets/data/bookings.json';
+import { useDispatch, useSelector } from 'react-redux';
 import roomsData from '../../assets/data/rooms.json';
 import { Button } from '../../style/styledComponents';
-import Modal from '../common/Modal';
-import { Table, TableTabs, activeTableTabs } from '../common/Table';
+import Modal from '../../components/common/Modal';
+import { Table, TableTabs, activeTableTabs } from '../../components/common/Table';
+import { searchBookings, selectBookings } from './bookingsSlice';
 
 function Bookings() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const bookingsData = useSelector(selectBookings);
   const [modalData, setModalData] = useState('');
   const [openModal, setOpenModal] = useState(false);
   const [bookingsState, setBookingsState] = useState([]);
@@ -49,6 +53,10 @@ function Bookings() {
     });
     setBookingsState(orderedFilteredBookings);
   }, [bookingsData, orderBy, searchTerm]);
+
+  useEffect(() => {
+    dispatch(searchBookings());
+  }, [dispatch]);
 
   return (
     <div>

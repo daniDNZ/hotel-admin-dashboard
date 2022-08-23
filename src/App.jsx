@@ -9,12 +9,12 @@ import NewUser from './components/users/NewUser';
 import User from './components/users/User';
 import Users from './components/users/Users';
 import Booking from './components/bookings/Booking';
-import Bookings from './components/bookings/Bookings';
 import NewBooking from './components/bookings/NewBooking';
 import Dashboard from './components/Dashboard';
 import Layout from './components/Layout';
 import RequireAuth from './components/RequireAuth';
 import { AuthContext } from './context/AuthContextProvider';
+import Bookings from './features/bookings/Bookings';
 
 function App() {
   const { auth } = useContext(AuthContext);
