@@ -1,8 +1,11 @@
 import { useState, useEffect } from 'react';
-import roomsData from '../../assets/data/rooms.json';
-import { Table, TableTabs, activeTableTabs } from '../common/Table';
+import { useDispatch, useSelector } from 'react-redux';
+import { Table, TableTabs, activeTableTabs } from '../../components/common/Table';
+import { fetchRooms, selectRooms } from './roomsSlice';
 
 function Rooms() {
+  const dispatch = useDispatch();
+  const roomsData = useSelector(selectRooms);
   const [roomsState, setRoomsState] = useState([]);
   const [orderBy, setOrderBy] = useState('orderDate');
   const [filterBy, setFilterBy] = useState('type');
@@ -33,6 +36,11 @@ function Rooms() {
     });
     setRoomsState(orderedFilteredRooms);
   }, [roomsData, orderBy, searchTerm]);
+
+  useEffect(() => {
+    dispatch(fetchRooms());
+  }, [dispatch]);
+
   return (
     <div>
       <TableTabs>

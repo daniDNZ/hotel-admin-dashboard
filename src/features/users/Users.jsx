@@ -1,8 +1,11 @@
 import { useEffect, useState } from 'react';
-import usersData from '../../assets/data/users.json';
-import { Table, TableTabs, activeTableTabs } from '../common/Table';
+import { useDispatch, useSelector } from 'react-redux';
+import { Table, TableTabs, activeTableTabs } from '../../components/common/Table';
+import { fetchUsers, selectUsers } from './usersSlice';
 
 function Users() {
+  const dispatch = useDispatch();
+  const usersData = useSelector(selectUsers);
   const [usersState, setUsersState] = useState([]);
   const [orderBy, setOrderBy] = useState('startDate');
   const [filterBy, setFilterBy] = useState('fullName');
@@ -34,6 +37,10 @@ function Users() {
     });
     setUsersState(orderedFilteredUsers);
   }, [usersData, orderBy, searchTerm]);
+
+  useEffect(() => {
+    dispatch(fetchUsers());
+  }, [dispatch]);
   return (
     <div>
       <TableTabs>

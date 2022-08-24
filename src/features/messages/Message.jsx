@@ -11,7 +11,7 @@ import leftArrow from '../../assets/svg/leftArrow.svg';
 import 'swiper/css';
 import 'swiper/css/bundle';
 import icons from '../../style/icons';
-import Modal from '../common/Modal';
+import Modal from '../../components/common/Modal';
 
 const MessagesContainer = styled.div`
 

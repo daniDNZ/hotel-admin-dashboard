@@ -6,7 +6,7 @@ import roomsData from '../../assets/data/rooms.json';
 import { Button } from '../../style/styledComponents';
 import Modal from '../../components/common/Modal';
 import { Table, TableTabs, activeTableTabs } from '../../components/common/Table';
-import { searchBookings, selectBookings } from './bookingsSlice';
+import { fetchBookings, selectBookings } from './bookingsSlice';
 
 function Bookings() {
   const navigate = useNavigate();
@@ -55,7 +55,7 @@ function Bookings() {
   }, [bookingsData, orderBy, searchTerm]);
 
   useEffect(() => {
-    dispatch(searchBookings());
+    dispatch(fetchBookings());
   }, [dispatch]);
 
   return (

@@ -1,9 +1,12 @@
 import { useEffect, useState } from 'react';
-import messagesData from '../../assets/data/messages.json';
+import { useDispatch, useSelector } from 'react-redux';
 import { Button } from '../../style/styledComponents';
-import { Table, TableTabs, activeTableTabs } from '../common/Table';
+import { Table, TableTabs, activeTableTabs } from '../../components/common/Table';
+import { fetchMessages, selectMessages } from './messagesSlice';
 
 function Messages() {
+  const dispatch = useDispatch();
+  const messagesData = useSelector(selectMessages);
   const [messagesState, setMessagesState] = useState([]);
   const [orderBy, setOrderBy] = useState('date');
   const [filterBy, setFilterBy] = useState('status');
@@ -34,6 +37,10 @@ function Messages() {
     });
     setMessagesState(orderedFilteredMessages);
   }, [messagesData, orderBy, searchTerm]);
+
+  useEffect(() => {
+    dispatch(fetchMessages());
+  }, [dispatch]);
   return (
     <div>
       <TableTabs>

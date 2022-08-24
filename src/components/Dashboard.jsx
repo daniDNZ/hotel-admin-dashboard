@@ -2,7 +2,7 @@ import icons from '../style/icons';
 import { Kpi, KpiRow } from './common/Kpi';
 import bookingsData from '../assets/data/bookings.json';
 import roomsData from '../assets/data/rooms.json';
-import { MessagesRow } from './messages/Message';
+import { MessagesRow } from '../features/messages/Message';
 
 function Dashboard() {
   const getOccupationPercentage = () => {
