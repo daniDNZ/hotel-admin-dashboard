@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-// import bookingsData from '../../assets/data/bookings.json';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import roomsData from '../../assets/data/rooms.json';
 import { Button } from '../../style/styledComponents';
 import Modal from '../../components/common/Modal';
 import { Table, TableTabs, activeTableTabs } from '../../components/common/Table';
 import { fetchBookings, selectBookings } from './bookingsSlice';
+import checkIsNotAButton from '../../assets/functions';
 
 function Bookings() {
   const navigate = useNavigate();
@@ -18,10 +18,6 @@ function Bookings() {
   const [orderBy, setOrderBy] = useState('orderDate');
   const [filterBy, setFilterBy] = useState('fullName');
   const [searchTerm, setSearchTerm] = useState('');
-
-  const goToBooking = (e, booking) => {
-    if (e.target.type !== 'button') { navigate(`${booking}`); }
-  };
 
   const throwModal = (data) => {
     setOpenModal(true);
@@ -95,7 +91,7 @@ function Bookings() {
         <tbody>
           {
             bookingsState.map((booking) => (
-              <tr key={booking.id} onClick={(e) => goToBooking(e, booking.id)}>
+              <tr key={booking.id} onClick={(e) => checkIsNotAButton(e, () => navigate(`${booking.id}`))}>
                 <td>
                   <span>{booking.fullName}</span>
                   <br />

@@ -6,7 +6,6 @@ import NewRoom from './features/rooms/NewRoom';
 import Room from './features/rooms/Room';
 import Rooms from './features/rooms/Rooms';
 import NewUser from './features/users/NewUser';
-import User from './features/users/User';
 import Users from './features/users/Users';
 import Booking from './features/bookings/Booking';
 import NewBooking from './features/bookings/NewBooking';
@@ -15,6 +14,7 @@ import Layout from './components/Layout';
 import RequireAuth from './components/RequireAuth';
 import { AuthContext } from './context/AuthContextProvider';
 import Bookings from './features/bookings/Bookings';
+import UpdateRoom from './features/rooms/UpdateRoom';
 
 function App() {
   const { auth } = useContext(AuthContext);
@@ -36,9 +36,9 @@ function App() {
                 <Route path="bookings/new" element={<NewBooking />} />
                 <Route path="rooms" element={<Rooms />} />
                 <Route path="rooms/:id" element={<Room />} />
+                <Route path="rooms/:id/update" element={<UpdateRoom />} />
                 <Route path="rooms/new" element={<NewRoom />} />
                 <Route path="users" element={<Users />} />
-                <Route path="users/:id" element={<User />} />
                 <Route path="users/new" element={<NewUser />} />
                 <Route path="contact" element={<Messages />} />
               </Route>

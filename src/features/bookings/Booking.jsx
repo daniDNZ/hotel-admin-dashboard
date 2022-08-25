@@ -1,11 +1,26 @@
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import bookingData from '../../assets/data/bookings.json';
-import rooms from '../../assets/data/rooms.json';
+import { fetchRoom, selectRoom } from '../rooms/roomsSlice';
+import { fetchBooking, selectBooking } from './bookingsSlice';
 
 function Booking() {
+  const dispatch = useDispatch();
+  const booking = useSelector(selectBooking);
+  const room = useSelector(selectRoom);
   const { id } = useParams();
-  const booking = bookingData.find((item) => item.id === Number(id));
-  const room = rooms.find((item) => item.id === booking.room);
+
+  useEffect(() => {
+    dispatch(fetchBooking(id));
+  }, []);
+
+  useEffect(() => {
+    dispatch(fetchRoom(booking.room));
+  }, [booking]);
+
+  if (!room) {
+    return 'Loading...';
+  }
 
   return (
     <div>

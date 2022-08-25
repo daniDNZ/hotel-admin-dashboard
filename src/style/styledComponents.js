@@ -34,6 +34,15 @@ const Button = styled.button.attrs({ type: 'button' })`
   }
 `;
 
+const Subtitle = styled.h2`
+  font-size: 28px;
+  font-weight: 600;
+
+  margin-bottom: 40px;
+`;
+
 const Amenitie = styled.div`
 `;
-export { Logo, Button, Amenitie };
+export {
+  Logo, Button, Amenitie, Subtitle,
+};

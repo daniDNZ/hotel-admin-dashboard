@@ -19,7 +19,7 @@ export const fetchUsers = createAsyncThunk(
 export const fetchUser = createAsyncThunk(
   'users/fetchUser',
   async (id) => {
-    const oneUser = usersJSON.find((element) => element.id === id);
+    const oneUser = usersJSON.find((element) => element.id === Number(id));
     const user = await delay(oneUser, 100);
     return user;
   },

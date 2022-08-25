@@ -1,9 +1,15 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Table, TableTabs, activeTableTabs } from '../../components/common/Table';
-import { fetchRooms, selectRooms } from './roomsSlice';
+import { useNavigate } from 'react-router-dom';
+import checkIsNotAButton from '../../assets/functions';
+import {
+  Table, TableTabs, activeTableTabs, TableElementMenu,
+} from '../../components/common/Table';
+import { Button } from '../../style/styledComponents';
+import { deleteRoom, fetchRooms, selectRooms } from './roomsSlice';
 
 function Rooms() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const roomsData = useSelector(selectRooms);
   const [roomsState, setRoomsState] = useState([]);
@@ -15,6 +21,14 @@ function Rooms() {
     activeTableTabs(parentNode);
     setFilterBy(filter);
     setSearchTerm(value);
+  };
+
+  const toggleElementMenu = (e) => {
+    const elementMenu = e.target.nextElementSibling;
+    // eslint-disable-next-line no-unused-expressions
+    elementMenu.style.display === 'block'
+      ? elementMenu.style.display = 'none'
+      : elementMenu.style.display = 'block';
   };
 
   useEffect(() => {
@@ -74,7 +88,7 @@ function Rooms() {
         <tbody>
           {
             roomsState.map((room) => (
-              <tr key={room.id}>
+              <tr key={room.id} onClick={(e) => checkIsNotAButton(e, () => navigate(`${room.id}`))}>
                 <td>
                   <span>
                     #
@@ -93,7 +107,7 @@ function Rooms() {
                   {room.number}
                 </td>
                 <td>
-                  {room.amenities}
+                  {room.amenities.map((amenitie) => `${amenitie}, `)}
                 </td>
                 <td>
                   {room.price}
@@ -110,7 +124,11 @@ function Rooms() {
                   Available
                 </td>
                 <td>
-                  <button type="button">...</button>
+                  <button type="button" onClick={toggleElementMenu}>...</button>
+                  <TableElementMenu>
+                    <Button green type="button" onClick={() => navigate(`${room.id}/update`)}>Update</Button>
+                    <Button type="button" onClick={() => dispatch(deleteRoom(room.id))}>Delete</Button>
+                  </TableElementMenu>
                 </td>
               </tr>
             ))

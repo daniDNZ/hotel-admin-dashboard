@@ -19,7 +19,7 @@ export const fetchMessages = createAsyncThunk(
 export const fetchMessage = createAsyncThunk(
   'messages/fetchMessage',
   async (id) => {
-    const oneMessage = messagesJSON.find((element) => element.id === id);
+    const oneMessage = messagesJSON.find((element) => element.id === Number(id));
     const message = await delay(oneMessage, 100);
     return message;
   },

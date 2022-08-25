@@ -19,7 +19,7 @@ export const fetchRooms = createAsyncThunk(
 export const fetchRoom = createAsyncThunk(
   'rooms/fetchRoom',
   async (id) => {
-    const oneRoom = roomsJSON.find((element) => element.id === id);
+    const oneRoom = roomsJSON.find((element) => element.id === Number(id));
     const room = await delay(oneRoom, 100);
     return room;
   },
@@ -36,9 +36,8 @@ export const deleteRoom = createAsyncThunk(
 
 export const updateRoom = createAsyncThunk(
   'rooms/updateRoom',
-  async (id) => {
-    const oneRoom = roomsJSON.find((element) => element.id === id);
-    const room = await delay(oneRoom, 100);
+  async (updatedRoom) => {
+    const room = await delay(updatedRoom, 100);
     return room;
   },
 );
@@ -97,7 +96,7 @@ export const roomsSlice = createSlice({
       })
       .addCase(updateRoom.fulfilled, (state, action) => {
         state.status = 'fulfilled';
-        state.rooms = state.room.filter((room) => room.id !== action.payload.id);
+        state.rooms = state.rooms.filter((room) => room.id !== action.payload.id);
         state.rooms.push(action.payload);
       })
       .addCase(updateRoom.rejected, (state) => {

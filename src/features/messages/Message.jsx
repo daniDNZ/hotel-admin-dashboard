@@ -2,9 +2,9 @@
 import styled from 'styled-components';
 import { Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import colors from '../../style/colors';
-import messagesData from '../../assets/data/messages.json';
 import rightArrow from '../../assets/svg/rightArrow.svg';
 import leftArrow from '../../assets/svg/leftArrow.svg';
 
@@ -12,6 +12,7 @@ import 'swiper/css';
 import 'swiper/css/bundle';
 import icons from '../../style/icons';
 import Modal from '../../components/common/Modal';
+import { fetchMessages, selectMessages } from './messagesSlice';
 
 const MessagesContainer = styled.div`
 
@@ -128,8 +129,15 @@ const CancelIcon = styled(StatusIcon)`
 `;
 
 function MessagesRow() {
+  const dispatch = useDispatch();
   const [modalData, setModalData] = useState('');
   const [openModal, setOpenModal] = useState(false);
+  const messagesData = useSelector(selectMessages);
+
+  useEffect(() => {
+    dispatch(fetchMessages());
+  }, []);
+
   return (
     <>
       <MessagesContainer>

@@ -5,8 +5,11 @@ const TableWrapper = styled.div`
  overflow-x: auto;
 
   & td, th{
-    padding: 20px 20px;
     white-space: nowrap;
+
+    padding: 20px 20px;
+
+    position: relative;
   }
 
   & td:first-child, th:first-child {
@@ -84,6 +87,30 @@ const TableTabs = styled.div`
   }
 `;
 
+const TableElementMenu = styled.div`
+background-color: white;
+  border-radius: 8px;
+  box-shadow: 0px 4px 30px #0000001A;
+
+
+  padding: 10px 20px;
+
+  position: absolute;
+  left: -200%;
+  top: 60%; 
+  z-index: 1000;
+
+  display: none;
+
+  & button {
+    width: 100%;
+    text-align: center;
+    &:not(:last-child) {
+    margin-bottom: 20px;
+    }
+  }
+`;
+
 // Functions
 const activeTableTabs = (parent) => {
   const activeItem = document.querySelector('li.active-table-tab');
@@ -102,4 +129,6 @@ function Table({ children }) {
   );
 }
 
-export { Table, TableTabs, activeTableTabs };
+export {
+  Table, TableTabs, activeTableTabs, TableElementMenu,
+};

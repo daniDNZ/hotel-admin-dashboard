@@ -19,7 +19,7 @@ export const fetchBookings = createAsyncThunk(
 export const fetchBooking = createAsyncThunk(
   'bookings/fetchBooking',
   async (id) => {
-    const oneBooking = bookingsJSON.find((element) => element.id === id);
+    const oneBooking = bookingsJSON.find((element) => element.id === Number(id));
     const booking = await delay(oneBooking, 100);
     return booking;
   },

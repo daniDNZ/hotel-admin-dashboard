@@ -4,7 +4,9 @@
     "type": "Corvette",
     "number": 22,
     "price": "128,25",
-    "amenities": "3 Bed Space",
+    "amenities": [
+      "3 Bed Space"
+    ],
     "photos": "http://dummyimage.com/x.png/cc0000/ffffff",
     "description": "est donec odio justo sollicitudin ut suscipit a feugiat et eros vestibulum ac est lacinia nisi venenatis tristique fusce congue diam id ornare imperdiet sapien urna pretium",
     "offer": true,
@@ -16,7 +18,9 @@
     "type": "CL-Class",
     "number": 23,
     "price": "180,26",
-    "amenities": "3 Bed Space",
+    "amenities": [
+      "3 Bed Space"
+    ],
     "photos": "http://dummyimage.com/x.png/5fa2dd/ffffff",
     "description": "cursus vestibulum proin eu mi nulla ac enim in tempor turpis nec euismod",
     "offer": true,
@@ -28,7 +32,9 @@
     "type": "GTO",
     "number": 77,
     "price": "95,36",
-    "amenities": "Television",
+    "amenities": [
+      "Television"
+    ],
     "photos": "http://dummyimage.com/x.png/ff4444/ffffff",
     "description": "morbi a ipsum integer a nibh in quis justo maecenas rhoncus aliquam lacus morbi quis tortor id nulla ultrices aliquet maecenas leo odio condimentum id luctus nec molestie sed justo pellentesque viverra pede ac diam cras pellentesque volutpat dui maecenas",
     "offer": false,
@@ -40,7 +46,9 @@
     "type": "Canyon",
     "number": 68,
     "price": "112,18",
-    "amenities": "3 Bed Space",
+    "amenities": [
+      "3 Bed Space"
+    ],
     "photos": "http://dummyimage.com/x.png/5fa2dd/ffffff",
     "description": "risus semper porta volutpat quam pede lobortis ligula sit amet eleifend pede libero quis orci nullam molestie nibh in lectus pellentesque at nulla suspendisse potenti cras in purus eu magna vulputate luctus",
     "offer": false,
@@ -52,7 +60,9 @@
     "type": "Edge",
     "number": 8,
     "price": "135,40",
-    "amenities": "24 Hours Guard",
+    "amenities": [
+      "24 Hours Guard"
+    ],
     "photos": "http://dummyimage.com/x.png/5fa2dd/ffffff",
     "description": "justo nec condimentum neque sapien placerat ante nulla justo aliquam quis turpis eget elit",
     "offer": true,
@@ -64,7 +74,9 @@
     "type": "Elantra",
     "number": 50,
     "price": "83,07",
-    "amenities": "Television",
+    "amenities": [
+      "Television"
+    ],
     "photos": "http://dummyimage.com/x.png/5fa2dd/ffffff",
     "description": "mi integer ac neque duis bibendum morbi non quam nec dui luctus rutrum nulla tellus in sagittis dui vel nisl duis ac nibh fusce lacus purus aliquet at feugiat non",
     "offer": false,
@@ -76,7 +88,9 @@
     "type": "Vandura 1500",
     "number": 22,
     "price": "60,97",
-    "amenities": "24 Hours Guard",
+    "amenities": [
+      "24 Hours Guard"
+    ],
     "photos": "http://dummyimage.com/x.png/5fa2dd/ffffff",
     "description": "consequat metus sapien ut nunc vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae mauris viverra diam vitae quam suspendisse potenti nullam porttitor lacus at turpis donec posuere",
     "offer": true,
@@ -88,7 +102,9 @@
     "type": "62",
     "number": 34,
     "price": "240,99",
-    "amenities": "Air Conditioner",
+    "amenities": [
+      "Air Conditioner"
+    ],
     "photos": "http://dummyimage.com/x.png/5fa2dd/ffffff",
     "description": "ultrices enim lorem ipsum dolor sit amet consectetuer adipiscing elit proin interdum mauris non ligula pellentesque ultrices phasellus id sapien in sapien iaculis congue vivamus metus arcu adipiscing",
     "offer": false,
@@ -100,7 +116,9 @@
     "type": "MDX",
     "number": 53,
     "price": "92,92",
-    "amenities": "Air Conditioner",
+    "amenities": [
+      "Air Conditioner"
+    ],
     "photos": "http://dummyimage.com/x.png/ff4444/ffffff",
     "description": "malesuada in imperdiet et commodo vulputate justo in blandit ultrices enim lorem ipsum dolor",
     "offer": true,
@@ -109,13 +127,17 @@
   },
   {
     "id": 10,
-    "type": "V70",
+    "type": "Suite",
     "number": 79,
     "price": "194,81",
-    "amenities": "2 Bathroom",
+    "amenities": [
+      "2 Bathroom",
+      "TV",
+      "Wi-Fi"
+    ],
     "photos": "http://dummyimage.com/x.png/ff4444/ffffff",
     "description": "praesent blandit lacinia erat vestibulum sed magna at nunc commodo placerat praesent blandit nam nulla integer pede justo lacinia eget tincidunt eget tempus vel pede",
-    "offer": false,
+    "offer": true,
     "discount": 21,
     "cancellation": "sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus etiam vel augue vestibulum rutrum rutrum neque aenean auctor gravida sem praesent id massa id nisl venenatis lacinia aenean sit amet justo"
   },
@@ -124,7 +146,9 @@
     "type": "Spyder",
     "number": 64,
     "price": "190,48",
-    "amenities": "Television",
+    "amenities": [
+      "Television"
+    ],
     "photos": "http://dummyimage.com/x.png/5fa2dd/ffffff",
     "description": "mi pede malesuada in imperdiet et commodo vulputate justo in blandit ultrices",
     "offer": false,
@@ -136,7 +160,9 @@
     "type": "LeBaron",
     "number": 51,
     "price": "82,47",
-    "amenities": "Free Wifi",
+    "amenities": [
+      "Free Wifi"
+    ],
     "photos": "http://dummyimage.com/x.png/dddddd/000000",
     "description": "luctus et ultrices posuere cubilia curae duis faucibus accumsan odio curabitur convallis duis consequat dui nec nisi volutpat eleifend",
     "offer": true,
@@ -148,7 +174,9 @@
     "type": "Insight",
     "number": 38,
     "price": "186,48",
-    "amenities": "2 Bathroom",
+    "amenities": [
+      "2 Bathroom"
+    ],
     "photos": "http://dummyimage.com/x.png/cc0000/ffffff",
     "description": "sagittis dui vel nisl duis ac nibh fusce lacus purus aliquet at feugiat non pretium quis lectus suspendisse potenti in",
     "offer": false,
@@ -160,7 +188,9 @@
     "type": "Cobalt SS",
     "number": 49,
     "price": "166,51",
-    "amenities": "Air Conditioner",
+    "amenities": [
+      "Air Conditioner"
+    ],
     "photos": "http://dummyimage.com/x.png/5fa2dd/ffffff",
     "description": "nisl aenean lectus pellentesque eget nunc donec quis orci eget orci vehicula condimentum curabitur in libero ut massa volutpat convallis morbi odio odio",
     "offer": false,
@@ -172,7 +202,9 @@
     "type": "V50",
     "number": 63,
     "price": "226,82",
-    "amenities": "Television",
+    "amenities": [
+      "Television"
+    ],
     "photos": "http://dummyimage.com/x.png/dddddd/000000",
     "description": "neque aenean auctor gravida sem praesent id massa id nisl venenatis lacinia aenean sit amet justo morbi ut odio cras",
     "offer": false,
@@ -184,7 +216,9 @@
     "type": "4Runner",
     "number": 75,
     "price": "58,07",
-    "amenities": "Air Conditioner",
+    "amenities": [
+      "Air Conditioner"
+    ],
     "photos": "http://dummyimage.com/x.png/5fa2dd/ffffff",
     "description": "morbi odio odio elementum eu interdum eu tincidunt in leo maecenas pulvinar lobortis est phasellus sit amet erat nulla tempus vivamus in felis eu sapien cursus vestibulum proin eu mi nulla ac enim in tempor turpis",
     "offer": false,
@@ -196,7 +230,9 @@
     "type": "Outlander",
     "number": 31,
     "price": "81,02",
-    "amenities": "24 Hours Guard",
+    "amenities": [
+      "24 Hours Guard"
+    ],
     "photos": "http://dummyimage.com/x.png/5fa2dd/ffffff",
     "description": "montes nascetur ridiculus mus vivamus vestibulum sagittis sapien cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus etiam vel augue vestibulum rutrum rutrum neque aenean auctor gravida sem praesent id massa id nisl venenatis lacinia aenean sit",
     "offer": false,
@@ -208,7 +244,9 @@
     "type": "Truck Xtracab SR5",
     "number": 4,
     "price": "104,18",
-    "amenities": "Television",
+    "amenities": [
+      "Television"
+    ],
     "photos": "http://dummyimage.com/x.png/5fa2dd/ffffff",
     "description": "sit amet consectetuer adipiscing elit proin risus praesent lectus vestibulum quam sapien varius ut blandit non interdum in ante",
     "offer": true,
@@ -220,7 +258,9 @@
     "type": "Astro",
     "number": 42,
     "price": "121,03",
-    "amenities": "2 Bathroom",
+    "amenities": [
+      "2 Bathroom"
+    ],
     "photos": "http://dummyimage.com/x.png/dddddd/000000",
     "description": "mauris viverra diam vitae quam suspendisse potenti nullam porttitor lacus at",
     "offer": true,
@@ -232,7 +272,9 @@
     "type": "S-Class",
     "number": 8,
     "price": "200,57",
-    "amenities": "Television",
+    "amenities": [
+      "Television"
+    ],
     "photos": "http://dummyimage.com/x.png/5fa2dd/ffffff",
     "description": "quisque ut erat curabitur gravida nisi at nibh in hac habitasse platea dictumst",
     "offer": true,
@@ -244,7 +286,9 @@
     "type": "S-Class",
     "number": 33,
     "price": "200,57",
-    "amenities": "Television",
+    "amenities": [
+      "Television"
+    ],
     "photos": "http://dummyimage.com/x.png/5fa2dd/ffffff",
     "description": "quisque ut erat curabitur gravida nisi at nibh in hac habitasse platea dictumst",
     "offer": true,
