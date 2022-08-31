@@ -65,7 +65,7 @@ function UpdateRoom() {
         </label>
         <label htmlFor="offer">
           Offer:
-          <input type="radio" name="offer" id="offer" checked={formData.offer} defaultValue={formData.offer} onChange={(e) => setFormData({ ...formData, offer: e.target.value })} />
+          <input type="radio" name="offer" id="offer" checked={formData.offer} onChange={(e) => setFormData({ ...formData, offer: e.target.value })} />
         </label>
         <label htmlFor="price">
           Price:

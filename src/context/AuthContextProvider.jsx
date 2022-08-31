@@ -11,14 +11,14 @@ function AuthContextProvider({ children }) {
         return { ...state, email: action.value.email };
       case 'LOGIN':
         return {
-          state: true,
+          status: true,
           username: action.value.username,
           email: action.value.email,
         };
       case 'LOGOUT':
       default:
         return {
-          state: false,
+          status: false,
           username: '',
           email: '',
         };
