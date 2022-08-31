@@ -3,6 +3,7 @@ import { Kpi, KpiRow } from './common/Kpi';
 import bookingsData from '../assets/data/bookings.json';
 import roomsData from '../assets/data/rooms.json';
 import { MessagesRow } from '../features/messages/Message';
+import BarChart from './BarChart';
 
 function Dashboard() {
   const getOccupationPercentage = () => {
@@ -27,6 +28,11 @@ function Dashboard() {
     return checkOuts.length;
   };
 
+  const data = {
+    sales: [2500, 3000, 1100, 800, 2850, 4673, 3857],
+    occupation: [20, 32, 38, 30, 67, 89, 70],
+  };
+
   return (
     <>
       <KpiRow>
@@ -35,6 +41,7 @@ function Dashboard() {
         <Kpi data={{ icon: icons.checkIn, number: getCheckIns(), text: 'Check In' }} />
         <Kpi data={{ icon: icons.checkOut, number: getCheckOuts(), text: 'Check Out' }} />
       </KpiRow>
+      <BarChart data={data} h={300} w={700} />
       <MessagesRow />
     </>
   );
