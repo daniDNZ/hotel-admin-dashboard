@@ -50,10 +50,10 @@ export default function Header() {
     const contentContainer = document.querySelector('#contentContainer');
     if (sidebar.classList.contains('hide')) {
       sidebar.classList.remove('hide');
-      contentContainer.classList.remove('remove-padding-left');
+      contentContainer.classList.remove('remove-margin-left');
     } else {
       sidebar.classList.add('hide');
-      contentContainer.classList.add('remove-padding-left');
+      contentContainer.classList.add('remove-margin-left');
     }
   };
   return (

@@ -5,7 +5,6 @@ import Header from './Header';
 import Sidebar from './Sidebar';
 
 const AppWrapper = styled.div`
-  max-width: 100vw;
   height: 100%;
   // Problemas de flex con swiper
   /* display: flex;
@@ -14,14 +13,15 @@ const AppWrapper = styled.div`
 
   & .content-container {
     width: 100%;
+    min-width: 960px;
     min-height: 100vh;
     background-color: ${colors.bgGray};
 
     // Padding para la sidebar / problemas de flex con swiper
-    padding-left: 345px;
+    margin-left: 345px;
 
-    &.remove-padding-left {
-      padding-left: 0;
+    &.remove-margin-left {
+      margin-left: 0;
     }
   }
   
