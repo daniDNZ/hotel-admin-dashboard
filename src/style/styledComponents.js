@@ -43,6 +43,12 @@ const Subtitle = styled.h2`
 
 const Amenitie = styled.div`
 `;
+
+const Row = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+`;
 export {
-  Logo, Button, Amenitie, Subtitle,
+  Logo, Button, Amenitie, Subtitle, Row,
 };

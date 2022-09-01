@@ -1,9 +1,11 @@
-import icons from '../style/icons';
 import { Kpi, KpiRow } from './common/Kpi';
 import bookingsData from '../assets/data/bookings.json';
 import roomsData from '../assets/data/rooms.json';
 import { MessagesRow } from '../features/messages/Message';
 import BarChart from './BarChart';
+import icons from '../style/icons';
+import { Row } from '../style/styledComponents';
+import Calendar from './Calendar';
 
 function Dashboard() {
   const getOccupationPercentage = () => {
@@ -57,7 +59,10 @@ function Dashboard() {
         <Kpi data={{ icon: icons.checkIn, number: getCheckIns(), text: 'Check In' }} />
         <Kpi data={{ icon: icons.checkOut, number: getCheckOuts(), text: 'Check Out' }} />
       </KpiRow>
-      <BarChart data={data} h={300} w={700} />
+      <Row>
+        <Calendar />
+        <BarChart data={data} h={600} w={710} />
+      </Row>
       <MessagesRow />
     </>
   );

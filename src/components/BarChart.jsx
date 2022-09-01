@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import colors from '../style/colors';
 
 const ChartContainer = styled.div`
-  width: 760px;
+  /* width: 500px; */
   background-color: white;
   box-shadow: 0px 4px 4px #00000005;
   border-radius: 20px;
@@ -21,7 +21,7 @@ const ChartContainer = styled.div`
 
 function BarChart({ data, h, w }) {
   useEffect(() => {
-    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
     const margin = {
       left: 60,
       top: 30,
@@ -85,7 +85,7 @@ function BarChart({ data, h, w }) {
           ]) - 10;
         })
         .attr('y', () => yScaleLeft(i.value) - 10)
-        .text(i.value);
+        .text(`${i.value}€`);
     }
 
     function onMouseOverOccupation(d, i) {
@@ -99,7 +99,7 @@ function BarChart({ data, h, w }) {
           ]) + 29;
         })
         .attr('y', () => yScaleRight(i.value) - 10)
-        .text(i.value);
+        .text(`${i.value}%`);
     }
 
     function onMouseOut(d, i) {
