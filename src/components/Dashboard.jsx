@@ -61,7 +61,7 @@ function Dashboard() {
       </KpiRow>
       <Row>
         <Calendar />
-        <BarChart data={data} h={600} w={710} />
+        <BarChart data={data} h={500} w={600} />
       </Row>
       <MessagesRow />
     </>

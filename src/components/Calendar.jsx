@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import colors from '../style/colors';
 
 const FullCalendarContainer = styled.div`
-width: 755px;
+width: 650px;
 min-width: 500px;
 background-color: white;
 box-shadow: 0px 4px 4px #00000005;
