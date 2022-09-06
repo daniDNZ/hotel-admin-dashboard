@@ -1,3 +1,4 @@
+import React from 'react';
 import { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
@@ -114,19 +115,24 @@ function Sidebar() {
   const location = useLocation();
 
   useEffect(() => {
-    let path = location.pathname.split('/')[1];
+    let path: string = location.pathname.split('/')[1];
     if (path === '') path = 'dashboard';
 
-    const activeItem = document.querySelector(`#${path}`);
-    activeItem.classList.add('active');
+    const activeItem: Element | null = document.querySelector(`#${path}`);
 
-    return (() => activeItem.classList.remove('active'));
+    if (activeItem !== null) {
+      activeItem.classList.add('active');
+
+      return (() => activeItem.classList.remove('active'));
+    }
+
+
   }, [location]);
 
   return (
     <SidebarContainer id="sidebar">
       <Logo margin={{
-        top: 0, right: '48px', bottom: '62px', left: '48px',
+        top: '0', right: '48px', bottom: '62px', left: '48px',
       }}
       />
       <ul>

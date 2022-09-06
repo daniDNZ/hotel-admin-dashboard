@@ -2,6 +2,15 @@ import styled from 'styled-components';
 import colors from './colors';
 import logo from '../assets/img/logo.png';
 
+type LogoProps = {
+  margin: {
+    top: string;
+    right: string;
+    bottom: string;
+    left: string;
+  }
+}
+
 const Logo = styled.div`
   width: 220px;
   height: 57px;
@@ -10,18 +19,22 @@ const Logo = styled.div`
   background-position: center;
   background-size: cover;
 
-  margin-top: ${(props) => props.margin.top};
-  margin-right: ${(props) => props.margin.right};
-  margin-bottom: ${(props) => props.margin.bottom};
-  margin-left: ${(props) => props.margin.left};
+  margin-top: ${({ margin }: LogoProps) => margin.top};
+  margin-right: ${({ margin }: LogoProps) => margin.right};
+  margin-bottom: ${({ margin }: LogoProps) => margin.bottom};
+  margin-left: ${({ margin }: LogoProps) => margin.left};
 `;
+
+type ButtonProps = {
+  green: boolean;
+}
 
 const Button = styled.button.attrs({ type: 'button' })`
   font-size: 14px;
   font-weight: 600;
   text-align: center;
-  color: ${(props) => (props.green ? colors.hardGreen : colors.red)};
-  background-color: ${(props) => (props.green ? colors.lightGreen : colors.lightRed)};
+  color: ${({ green }: ButtonProps) => (green ? colors.hardGreen : colors.red)};
+  background-color: ${({ green }: ButtonProps) => (green ? colors.lightGreen : colors.lightRed)};
   border-radius: 8px;
   cursor: pointer;
 
@@ -30,7 +43,7 @@ const Button = styled.button.attrs({ type: 'button' })`
 
   &:hover {
     color: white;
-    background-color: ${(props) => (props.green ? colors.hardGreen : colors.red)};
+    background-color: ${({ green }: ButtonProps) => (green ? colors.hardGreen : colors.red)};
   }
 `;
 

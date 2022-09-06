@@ -15,6 +15,7 @@ import { ReactComponent as Cancel } from '../assets/svg/cancel.svg';
 import { ReactComponent as CheckCircle } from '../assets/svg/check-circle.svg';
 import { ReactComponent as LeftArrow } from '../assets/svg/leftArrow.svg';
 import { ReactComponent as RightArrow } from '../assets/svg/rightArrow.svg';
+import React, { ReactComponentElement, ReactElement } from 'react';
 
 const Icon = styled.i`
   min-width: 48px;
@@ -38,23 +39,42 @@ const Icon = styled.i`
   }
 `;
 
-const icons = {
-  dashboard: <Icon><DashboardIcon /></Icon>,
-  bookings: <Icon><BookingsIcon /></Icon>,
-  rooms: <Icon><RoomsIcon /></Icon>,
-  contact: <Icon><ContactIcon /></Icon>,
-  users: <Icon><UsersIcon /></Icon>,
-  menu: <Icon><MenuIcon /></Icon>,
-  message: <Icon><MessageIcon /></Icon>,
-  bell: <Icon><BellIcon /></Icon>,
-  logout: <Icon><LogoutIcon /></Icon>,
-  bed: <Icon><Bed /></Icon>,
-  checkIn: <Icon><CheckIn /></Icon>,
-  checkOut: <Icon><CheckOut /></Icon>,
-  cancel: <Icon><Cancel /></Icon>,
-  checkCircle: <Icon><CheckCircle /></Icon>,
-  leftArrow: <Icon><LeftArrow /></Icon>,
-  rightArrow: <Icon><RightArrow /></Icon>,
+interface IIcons {
+  dashboard: ReactElement;
+  bookings: ReactElement;
+  rooms: ReactElement;
+  contact: ReactElement;
+  users: ReactElement;
+  menu: ReactElement;
+  message: ReactElement;
+  bell: ReactElement;
+  logout: ReactElement;
+  bed: ReactElement;
+  checkIn: ReactElement;
+  checkOut: ReactElement;
+  cancel: ReactElement;
+  checkCircle: ReactElement;
+  leftArrow: ReactElement;
+  rightArrow: ReactElement;
+}
+
+const icons: IIcons = {
+  dashboard: <Icon><DashboardIcon /></Icon >,
+  bookings: <Icon><BookingsIcon /></Icon >,
+  rooms: <Icon><RoomsIcon /></Icon >,
+  contact: <Icon><ContactIcon /></Icon >,
+  users: <Icon><UsersIcon /></Icon >,
+  menu: <Icon><MenuIcon /></Icon >,
+  message: <Icon><MessageIcon /></Icon >,
+  bell: <Icon><BellIcon /></Icon >,
+  logout: <Icon><LogoutIcon /></Icon >,
+  bed: <Icon><Bed /></Icon >,
+  checkIn: <Icon><CheckIn /></Icon >,
+  checkOut: <Icon><CheckOut /></Icon >,
+  cancel: <Icon><Cancel /></Icon >,
+  checkCircle: <Icon><CheckCircle /></Icon >,
+  leftArrow: <Icon><LeftArrow /></Icon >,
+  rightArrow: <Icon><RightArrow /></Icon >,
 };
 
 export default icons;

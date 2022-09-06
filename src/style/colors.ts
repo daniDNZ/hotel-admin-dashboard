@@ -1,4 +1,16 @@
-const colors = {
+interface IColors {
+  green: string;
+  hardGreen: string,
+  lightGreen: string,
+  red: string,
+  lightRed: string,
+  light: string,
+  bgGray: string,
+  gray: string,
+  borderGray: string,
+}
+
+const colors: IColors = {
   green: '#799283',
   hardGreen: '#135846',
   lightGreen: '#EBF1EF',
