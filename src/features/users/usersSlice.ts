@@ -1,8 +1,12 @@
 /* eslint-disable no-param-reassign */
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import usersJSON from '../../assets/data/users.json';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { RootState } from '../../app/store';
+import usersJSONNoTyped from '../../assets/data/users.json';
+import { IUser } from './userInterface';
 
-const delay = async (data, ms) => {
+const usersJSON: any = usersJSONNoTyped;
+
+const delay = async (data: any, ms: number) => {
   // eslint-disable-next-line no-promise-executor-return
   await new Promise((resolve) => setTimeout(resolve, ms));
   return data;
@@ -19,7 +23,7 @@ export const fetchUsers = createAsyncThunk(
 export const fetchUser = createAsyncThunk(
   'users/fetchUser',
   async (id) => {
-    const oneUser = usersJSON.find((element) => element.id === Number(id));
+    const oneUser = usersJSON.find((element: IUser) => element.id === Number(id));
     const user = await delay(oneUser, 100);
     return user;
   },
@@ -28,7 +32,7 @@ export const fetchUser = createAsyncThunk(
 export const deleteUser = createAsyncThunk(
   'users/deleteUser',
   async (id) => {
-    const oneUser = usersJSON.find((element) => element.id === id);
+    const oneUser = usersJSON.find((element: IUser) => element.id === id);
     const user = await delay(oneUser, 100);
     return user;
   },
@@ -37,7 +41,7 @@ export const deleteUser = createAsyncThunk(
 export const updateUser = createAsyncThunk(
   'users/updateUser',
   async (id) => {
-    const oneUser = usersJSON.find((element) => element.id === id);
+    const oneUser = usersJSON.find((element: IUser) => element.id === id);
     const user = await delay(oneUser, 100);
     return user;
   },
@@ -51,7 +55,13 @@ export const newUser = createAsyncThunk(
   },
 );
 
-const initialState = {
+interface IUsersState {
+  users: IUser[];
+  user: IUser;
+  status: string;
+}
+
+const initialState: IUsersState = {
   users: [],
   user: {},
   status: 'loading',
@@ -60,12 +70,13 @@ const initialState = {
 export const usersSlice = createSlice({
   name: 'users',
   initialState,
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchUsers.pending, (state) => {
         state.status = 'loading';
       })
-      .addCase(fetchUsers.fulfilled, (state, action) => {
+      .addCase(fetchUsers.fulfilled, (state, action: PayloadAction<Array<IUser>>) => {
         state.status = 'fulfilled';
         state.users = action.payload;
       })
@@ -75,7 +86,7 @@ export const usersSlice = createSlice({
       .addCase(fetchUser.pending, (state) => {
         state.status = 'loading';
       })
-      .addCase(fetchUser.fulfilled, (state, action) => {
+      .addCase(fetchUser.fulfilled, (state, action: PayloadAction<IUser>) => {
         state.status = 'fulfilled';
         state.user = action.payload;
       })
@@ -85,7 +96,7 @@ export const usersSlice = createSlice({
       .addCase(deleteUser.pending, (state) => {
         state.status = 'loading';
       })
-      .addCase(deleteUser.fulfilled, (state, action) => {
+      .addCase(deleteUser.fulfilled, (state, action: PayloadAction<IUser>) => {
         state.status = 'fulfilled';
         state.users = state.users.filter((user) => user.id !== action.payload.id);
       })
@@ -95,9 +106,9 @@ export const usersSlice = createSlice({
       .addCase(updateUser.pending, (state) => {
         state.status = 'loading';
       })
-      .addCase(updateUser.fulfilled, (state, action) => {
+      .addCase(updateUser.fulfilled, (state, action: PayloadAction<IUser>) => {
         state.status = 'fulfilled';
-        state.users = state.user.filter((user) => user.id !== action.payload.id);
+        state.users = state.user.filter((user: IUser) => user.id !== action.payload.id);
         state.users.push(action.payload);
       })
       .addCase(updateUser.rejected, (state) => {
@@ -116,7 +127,7 @@ export const usersSlice = createSlice({
   },
 });
 
-export const selectUsers = (state) => state.users.users;
-export const selectUser = (state) => state.users.user;
+export const selectUsers = (state: RootState) => state.users.users;
+export const selectUser = (state: RootState) => state.users.user;
 
 export default usersSlice.reducer;

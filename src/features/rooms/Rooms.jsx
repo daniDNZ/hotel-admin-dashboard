@@ -1,17 +1,17 @@
 import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import checkIsNotAButton from '../../assets/functions';
+import checkIsNotAButton from '../../assets/functions/index.ts';
 import {
   Table, TableTabs, activeTableTabs, TableElementMenu,
-} from '../../components/common/Table';
-import { Button } from '../../style/styledComponents';
-import { deleteRoom, fetchRooms, selectRooms } from './roomsSlice';
+} from '../../components/common/Table.tsx';
+import { Button } from '../../style/styledComponents.ts';
+import { deleteRoom, fetchRooms, selectRooms } from './roomsSlice.ts';
+import { useAppDispatch, useAppSelector } from '../../app/hooks.ts';
 
 function Rooms() {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const roomsData = useSelector(selectRooms);
+  const dispatch = useAppDispatch();
+  const roomsData = useAppSelector(selectRooms);
   const [roomsState, setRoomsState] = useState([]);
   const [orderBy, setOrderBy] = useState('orderDate');
   const [filterBy, setFilterBy] = useState('type');

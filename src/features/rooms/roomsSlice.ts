@@ -1,8 +1,13 @@
 /* eslint-disable no-param-reassign */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import roomsJSON from '../../assets/data/rooms.json';
+import type { PayloadAction } from '@reduxjs/toolkit';
+import roomsJSONNoTyped from '../../assets/data/rooms.json';
+import { IRoom } from './roomInterface';
+import { RootState } from '../../app/store';
 
-const delay = async (data, ms) => {
+const roomsJSON: any = roomsJSONNoTyped;
+
+const delay = async (data: any, ms: number) => {
   // eslint-disable-next-line no-promise-executor-return
   await new Promise((resolve) => setTimeout(resolve, ms));
   return data;
@@ -19,7 +24,7 @@ export const fetchRooms = createAsyncThunk(
 export const fetchRoom = createAsyncThunk(
   'rooms/fetchRoom',
   async (id) => {
-    const oneRoom = roomsJSON.find((element) => element.id === Number(id));
+    const oneRoom = roomsJSON.find((element: IRoom) => element.id === Number(id));
     const room = await delay(oneRoom, 100);
     return room;
   },
@@ -28,7 +33,7 @@ export const fetchRoom = createAsyncThunk(
 export const deleteRoom = createAsyncThunk(
   'rooms/deleteRoom',
   async (id) => {
-    const oneRoom = roomsJSON.find((element) => element.id === id);
+    const oneRoom = roomsJSON.find((element: IRoom) => element.id === id);
     const room = await delay(oneRoom, 100);
     return room;
   },
@@ -50,7 +55,13 @@ export const newRoom = createAsyncThunk(
   },
 );
 
-const initialState = {
+interface IRoomsState {
+  rooms: IRoom[];
+  room: IRoom;
+  status: string;
+}
+
+const initialState: IRoomsState = {
   rooms: [],
   room: {},
   status: 'loading',
@@ -59,12 +70,13 @@ const initialState = {
 export const roomsSlice = createSlice({
   name: 'rooms',
   initialState,
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchRooms.pending, (state) => {
         state.status = 'loading';
       })
-      .addCase(fetchRooms.fulfilled, (state, action) => {
+      .addCase(fetchRooms.fulfilled, (state, action: PayloadAction<Array<IRoom>>) => {
         state.status = 'fulfilled';
         state.rooms = action.payload;
       })
@@ -74,7 +86,7 @@ export const roomsSlice = createSlice({
       .addCase(fetchRoom.pending, (state) => {
         state.status = 'loading';
       })
-      .addCase(fetchRoom.fulfilled, (state, action) => {
+      .addCase(fetchRoom.fulfilled, (state, action: PayloadAction<IRoom>) => {
         state.status = 'fulfilled';
         state.room = action.payload;
       })
@@ -84,7 +96,7 @@ export const roomsSlice = createSlice({
       .addCase(deleteRoom.pending, (state) => {
         state.status = 'loading';
       })
-      .addCase(deleteRoom.fulfilled, (state, action) => {
+      .addCase(deleteRoom.fulfilled, (state, action: PayloadAction<IRoom>) => {
         state.status = 'fulfilled';
         state.rooms = state.rooms.filter((room) => room.id !== action.payload.id);
       })
@@ -94,9 +106,9 @@ export const roomsSlice = createSlice({
       .addCase(updateRoom.pending, (state) => {
         state.status = 'loading';
       })
-      .addCase(updateRoom.fulfilled, (state, action) => {
+      .addCase(updateRoom.fulfilled, (state, action: PayloadAction<IRoom>) => {
         state.status = 'fulfilled';
-        state.rooms = state.rooms.filter((room) => room.id !== action.payload.id);
+        state.rooms = state.rooms.filter((room: IRoom) => room.id !== action.payload.id);
         state.rooms.push(action.payload);
       })
       .addCase(updateRoom.rejected, (state) => {
@@ -105,7 +117,7 @@ export const roomsSlice = createSlice({
       .addCase(newRoom.pending, (state) => {
         state.status = 'loading';
       })
-      .addCase(newRoom.fulfilled, (state, action) => {
+      .addCase(newRoom.fulfilled, (state, action: PayloadAction<IRoom>) => {
         state.status = 'fulfilled';
         state.rooms.push(action.payload);
       })
@@ -115,7 +127,7 @@ export const roomsSlice = createSlice({
   },
 });
 
-export const selectRooms = (state) => state.rooms.rooms;
-export const selectRoom = (state) => state.rooms.room;
+export const selectRooms = (state: RootState) => state.rooms.rooms;
+export const selectRoom = (state: RootState) => state.rooms.room;
 
 export default roomsSlice.reducer;

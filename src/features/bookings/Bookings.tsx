@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import roomsData from '../../assets/data/rooms.json';
+import roomsDataNoTyped from '../../assets/data/rooms.json';
 import { Button } from '../../style/styledComponents';
 import Modal from '../../components/common/Modal';
 import { Table, TableTabs, activeTableTabs } from '../../components/common/Table';
@@ -15,7 +15,7 @@ function Bookings() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const bookingsData: IBooking[] = useAppSelector(selectBookings);
-  const roomsDataParsed: IRoom[] = JSON.parse(roomsData) || [];
+  const roomsData: any = roomsDataNoTyped || [];
   const [modalData, setModalData] = useState<string>('');
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [bookingsState, setBookingsState] = useState<Array<IBooking>>([]);
@@ -54,7 +54,7 @@ function Bookings() {
       return 0;
     });
     setBookingsState(orderedFilteredBookings);
-  }, [bookingsData, orderBy, searchTerm]);
+  }, [bookingsData, orderBy, searchTerm, filterBy]);
 
   useEffect(() => {
     dispatch(fetchBookings());
@@ -121,7 +121,7 @@ function Bookings() {
                   </Button>
                 </td>
                 <td>
-                  {roomsDataParsed.find((room: IRoom) => room.id === booking.room)?.type}
+                  {roomsData.find((room: IRoom) => room.id === booking.room)?.type}
                 </td>
                 <td>
                   {booking.status}

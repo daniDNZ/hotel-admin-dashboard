@@ -139,9 +139,10 @@ function BarChart({ data, h, w }) {
       .attr('fill', 'red');
 
     return () => {
-      document.querySelector('#chartContainer').innerHTML = '';
+      const chartContainer = document.querySelector('#chartContainer');
+      if (chartContainer) chartContainer.innerHTML = '';
     };
-  }, []);
+  }, [data.occupation, data.sales,h, w]);
   return (
     <ChartContainer id="chartContainer" />
   );

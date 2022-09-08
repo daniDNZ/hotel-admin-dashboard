@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Button } from '../../style/styledComponents';
-import { Table, TableTabs, activeTableTabs } from '../../components/common/Table';
-import { fetchMessages, selectMessages } from './messagesSlice';
+import { useAppDispatch, useAppSelector } from '../../app/hooks.ts';
+import { Button } from '../../style/styledComponents.ts';
+import { Table, TableTabs, activeTableTabs } from '../../components/common/Table.tsx';
+import { fetchMessages, selectMessages } from './messagesSlice.ts';
 
 function Messages() {
-  const dispatch = useDispatch();
-  const messagesData = useSelector(selectMessages);
+  const dispatch = useAppDispatch();
+  const messagesData = useAppSelector(selectMessages);
   const [messagesState, setMessagesState] = useState([]);
   const [orderBy, setOrderBy] = useState('date');
   const [filterBy, setFilterBy] = useState('status');

@@ -1,11 +1,10 @@
 /* eslint-disable no-param-reassign */
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import type { PayloadAction } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import type { RootState } from '../../app/store';
-import bookingsJSONNoParsed from '../../assets/data/bookings.json';
+import bookingsJSONNoTyped from '../../assets/data/bookings.json';
 import { IBooking } from './bookingInterface';
 
-const bookingsJSON: IBooking[] = JSON.parse(bookingsJSONNoParsed);
+const bookingsJSON: any = bookingsJSONNoTyped;
 
 const delay = async (data: any, ms: number) => {
   // eslint-disable-next-line no-promise-executor-return
@@ -24,7 +23,7 @@ export const fetchBookings = createAsyncThunk(
 export const fetchBooking = createAsyncThunk(
   'bookings/fetchBooking',
   async (id) => {
-    const oneBooking = bookingsJSON.find((element) => element.id === Number(id));
+    const oneBooking = bookingsJSON.find((element: IBooking) => element.id === Number(id));
     const booking = await delay(oneBooking, 100);
     return booking;
   },
@@ -33,7 +32,7 @@ export const fetchBooking = createAsyncThunk(
 export const deleteBooking = createAsyncThunk(
   'bookings/deleteBooking',
   async (id) => {
-    const oneBooking = bookingsJSON.find((element) => element.id === id);
+    const oneBooking = bookingsJSON.find((element: IBooking) => element.id === id);
     const booking = await delay(oneBooking, 100);
     return booking;
   },
@@ -42,7 +41,7 @@ export const deleteBooking = createAsyncThunk(
 export const updateBooking = createAsyncThunk(
   'bookings/updateBooking',
   async (id) => {
-    const oneBooking = bookingsJSON.find((element) => element.id === id);
+    const oneBooking = bookingsJSON.find((element: IBooking) => element.id === id);
     const booking = await delay(oneBooking, 100);
     return booking;
   },

@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Table, TableTabs, activeTableTabs } from '../../components/common/Table';
-import { fetchUsers, selectUsers } from './usersSlice';
+import { Table, TableTabs, activeTableTabs } from '../../components/common/Table.tsx';
+import { fetchUsers, selectUsers } from './usersSlice.ts';
+import { useAppDispatch, useAppSelector } from '../../app/hooks.ts';
 
 function Users() {
-  const dispatch = useDispatch();
-  const usersData = useSelector(selectUsers);
+  const dispatch = useAppDispatch();
+  const usersData = useAppSelector(selectUsers);
   const [usersState, setUsersState] = useState([]);
   const [orderBy, setOrderBy] = useState('startDate');
   const [filterBy, setFilterBy] = useState('fullName');
