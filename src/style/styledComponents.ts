@@ -26,7 +26,7 @@ const Logo = styled.div`
 `;
 
 type ButtonProps = {
-  green: boolean;
+  green?: boolean;
 }
 
 const Button = styled.button.attrs({ type: 'button' })`

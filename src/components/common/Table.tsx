@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 import colors from '../../style/colors';
 
@@ -112,14 +113,18 @@ background-color: white;
 `;
 
 // Functions
-const activeTableTabs = (parent) => {
-  const activeItem = document.querySelector('li.active-table-tab');
+const activeTableTabs = (parent: HTMLElement) => {
+  const activeItem = document.querySelector('li.active-table-tab') as HTMLElement;
   activeItem.classList.remove('active-table-tab');
   parent.classList.add('active-table-tab');
 };
 
+type TableProps = {
+  children: JSX.Element[]
+}
+
 // Component
-function Table({ children }) {
+function Table({ children }: TableProps) {
   return (
     <TableWrapper>
       <table>

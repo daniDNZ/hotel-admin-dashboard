@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import roomsData from '../../assets/data/rooms.json';
 import { Button } from '../../style/styledComponents';
@@ -7,40 +6,47 @@ import Modal from '../../components/common/Modal';
 import { Table, TableTabs, activeTableTabs } from '../../components/common/Table';
 import { fetchBookings, selectBookings } from './bookingsSlice';
 import checkIsNotAButton from '../../assets/functions';
+import React from 'react';
+import { IBooking } from './bookingInterface';
+import { IRoom } from '../rooms/roomInterface';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 
 function Bookings() {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const bookingsData = useSelector(selectBookings);
-  const [modalData, setModalData] = useState('');
-  const [openModal, setOpenModal] = useState(false);
-  const [bookingsState, setBookingsState] = useState([]);
-  const [orderBy, setOrderBy] = useState('orderDate');
-  const [filterBy, setFilterBy] = useState('fullName');
-  const [searchTerm, setSearchTerm] = useState('');
+  const dispatch = useAppDispatch();
+  const bookingsData: IBooking[] = useAppSelector(selectBookings);
+  const roomsDataParsed: IRoom[] = JSON.parse(roomsData) || [];
+  const [modalData, setModalData] = useState<string>('');
+  const [openModal, setOpenModal] = useState<boolean>(false);
+  const [bookingsState, setBookingsState] = useState<Array<IBooking>>([]);
+  const [orderBy, setOrderBy] = useState<string>('orderDate');
+  const [filterBy, setFilterBy] = useState<string>('fullName');
+  const [searchTerm, setSearchTerm] = useState<string>('');
 
-  const throwModal = (data) => {
+  const throwModal = (data: string) => {
     setOpenModal(true);
     setModalData(data);
   };
 
-  const handleTabClick = (filter, value, parentNode) => {
-    activeTableTabs(parentNode);
+  const handleTabClick = (filter: string, value: string, parentNode: ParentNode | null) => {
+    if (parentNode) {
+      activeTableTabs(parentNode as HTMLElement);
+    }
     setFilterBy(filter);
     setSearchTerm(value);
   };
 
-  const handleSearchChange = (filter, value) => {
+  const handleSearchChange = (filter: string, value: string) => {
     setFilterBy(filter);
     setSearchTerm(value);
 
     const defaultTab = document.querySelector('#defaultTab');
-    activeTableTabs(defaultTab);
+    if (defaultTab) activeTableTabs(defaultTab as HTMLElement);
   };
 
   useEffect(() => {
     const orderedFilteredBookings = bookingsData.filter(
-      (booking) => booking[filterBy].toLowerCase().includes(searchTerm.toLowerCase()),
+      (booking: IBooking) => booking[filterBy].toLowerCase().includes(searchTerm.toLowerCase()),
     );
     orderedFilteredBookings.sort((a, b) => {
       if (a[orderBy] > b[orderBy]) return 1;
@@ -58,10 +64,10 @@ function Bookings() {
     <div>
       <TableTabs>
         <ul className="table-tabs__list">
-          <li className="active-table-tab" id="defaultTab"><button type="button" onClick={(e) => { handleTabClick('fullName', '', e.target.parentNode); }}>All Bookings</button></li>
-          <li><button type="button" onClick={(e) => { handleTabClick('status', 'checkin', e.target.parentNode); }}>Checking In</button></li>
-          <li><button type="button" onClick={(e) => { handleTabClick('status', 'checkout', e.target.parentNode); }}>Checking Out</button></li>
-          <li><button type="button" onClick={(e) => { handleTabClick('status', 'inprogress', e.target.parentNode); }}>In Progress</button></li>
+          <li className="active-table-tab" id="defaultTab"><button type="button" onClick={(e) => { handleTabClick('fullName', '', (e.target as HTMLElement).parentNode); }}>All Bookings</button></li>
+          <li><button type="button" onClick={(e) => { handleTabClick('status', 'checkin', (e.target as HTMLElement).parentNode); }}>Checking In</button></li>
+          <li><button type="button" onClick={(e) => { handleTabClick('status', 'checkout', (e.target as HTMLElement).parentNode); }}>Checking Out</button></li>
+          <li><button type="button" onClick={(e) => { handleTabClick('status', 'inprogress', (e.target as HTMLElement).parentNode); }}>In Progress</button></li>
         </ul>
         <div className="table-tabs__sort">
           <input type="search" name="customerName" id="customerName" placeholder="Search..." onChange={(e) => { handleSearchChange('fullName', e.target.value); }} />
@@ -90,7 +96,7 @@ function Bookings() {
         </thead>
         <tbody>
           {
-            bookingsState.map((booking) => (
+            bookingsState.map((booking: IBooking) => (
               <tr key={booking.id} onClick={(e) => checkIsNotAButton(e, () => navigate(`${booking.id}`))}>
                 <td>
                   <span>{booking.fullName}</span>
@@ -115,7 +121,7 @@ function Bookings() {
                   </Button>
                 </td>
                 <td>
-                  {roomsData.find((room) => room.id === booking.room).type}
+                  {roomsDataParsed.find((room: IRoom) => room.id === booking.room)?.type}
                 </td>
                 <td>
                   {booking.status}
@@ -134,7 +140,7 @@ function Bookings() {
         <span>Showing 10 of x Data</span>
         <div>Pagination</div>
       </div>
-    </div>
+    </div >
   );
 }
 

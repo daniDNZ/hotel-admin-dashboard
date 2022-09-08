@@ -1,3 +1,4 @@
+import React from 'react';
 import { useEffect } from 'react';
 import styled from 'styled-components';
 import { Button } from '../../style/styledComponents';
@@ -30,13 +31,19 @@ const MessageModal = styled.div`
 
 `;
 
-function Modal({ data, openModal, setOpenModal }) {
+type ModalProps = {
+  data: string;
+  openModal: boolean;
+  setOpenModal: (value: React.SetStateAction<boolean>) => void;
+}
+
+function Modal({ data, openModal, setOpenModal }: ModalProps) {
   const closeModal = () => {
     setOpenModal(false);
   };
 
   useEffect(() => {
-    const modal = document.querySelector('#modal');
+    const modal = document.querySelector('#modal') as HTMLElement;
     if (openModal) modal.classList.add('show');
     else modal.classList.remove('show');
   }, [openModal]);

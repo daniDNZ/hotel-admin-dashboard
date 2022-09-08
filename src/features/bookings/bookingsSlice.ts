@@ -1,8 +1,13 @@
 /* eslint-disable no-param-reassign */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import bookingsJSON from '../../assets/data/bookings.json';
+import type { PayloadAction } from '@reduxjs/toolkit';
+import type { RootState } from '../../app/store';
+import bookingsJSONNoParsed from '../../assets/data/bookings.json';
+import { IBooking } from './bookingInterface';
 
-const delay = async (data, ms) => {
+const bookingsJSON: IBooking[] = JSON.parse(bookingsJSONNoParsed);
+
+const delay = async (data: any, ms: number) => {
   // eslint-disable-next-line no-promise-executor-return
   await new Promise((resolve) => setTimeout(resolve, ms));
   return data;
@@ -51,7 +56,13 @@ export const newBooking = createAsyncThunk(
   },
 );
 
-const initialState = {
+interface IBookingsState {
+  bookings: IBooking[];
+  booking: IBooking;
+  status: string;
+}
+
+const initialState: IBookingsState = {
   bookings: [],
   booking: {},
   status: 'loading',
@@ -60,12 +71,15 @@ const initialState = {
 export const bookingsSlice = createSlice({
   name: 'bookings',
   initialState,
+  reducers: {
+
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchBookings.pending, (state) => {
         state.status = 'loading';
       })
-      .addCase(fetchBookings.fulfilled, (state, action) => {
+      .addCase(fetchBookings.fulfilled, (state, action: PayloadAction<Array<IBooking>>) => {
         state.status = 'fulfilled';
         state.bookings = action.payload;
       })
@@ -75,7 +89,7 @@ export const bookingsSlice = createSlice({
       .addCase(fetchBooking.pending, (state) => {
         state.status = 'loading';
       })
-      .addCase(fetchBooking.fulfilled, (state, action) => {
+      .addCase(fetchBooking.fulfilled, (state, action: PayloadAction<IBooking>) => {
         state.status = 'fulfilled';
         state.booking = action.payload;
       })
@@ -85,7 +99,7 @@ export const bookingsSlice = createSlice({
       .addCase(deleteBooking.pending, (state) => {
         state.status = 'loading';
       })
-      .addCase(deleteBooking.fulfilled, (state, action) => {
+      .addCase(deleteBooking.fulfilled, (state, action: PayloadAction<IBooking>) => {
         state.status = 'fulfilled';
         state.bookings = state.bookings.filter((booking) => booking.id !== action.payload.id);
       })
@@ -95,9 +109,9 @@ export const bookingsSlice = createSlice({
       .addCase(updateBooking.pending, (state) => {
         state.status = 'loading';
       })
-      .addCase(updateBooking.fulfilled, (state, action) => {
+      .addCase(updateBooking.fulfilled, (state, action: PayloadAction<IBooking>) => {
         state.status = 'fulfilled';
-        state.bookings = state.booking.filter((booking) => booking.id !== action.payload.id);
+        state.bookings = state.booking.filter((booking: IBooking) => booking.id !== action.payload.id);
         state.bookings.push(action.payload);
       })
       .addCase(updateBooking.rejected, (state) => {
@@ -106,7 +120,7 @@ export const bookingsSlice = createSlice({
       .addCase(newBooking.pending, (state) => {
         state.status = 'loading';
       })
-      .addCase(newBooking.fulfilled, (state, action) => {
+      .addCase(newBooking.fulfilled, (state, action: PayloadAction<IBooking>) => {
         state.status = 'fulfilled';
         state.bookings.push(action.payload);
       })
@@ -116,7 +130,7 @@ export const bookingsSlice = createSlice({
   },
 });
 
-export const selectBookings = (state) => state.bookings.bookings;
-export const selectBooking = (state) => state.bookings.booking;
+export const selectBookings = (state: RootState) => state.bookings.bookings;
+export const selectBooking = (state: RootState) => state.bookings.booking;
 
 export default bookingsSlice.reducer;

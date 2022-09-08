@@ -1,10 +1,10 @@
 import { useState, useContext } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import colors from '../style/colors';
-import { Button, Logo } from '../style/styledComponents';
+import colors from '../style/colors.ts';
+import { Button, Logo } from '../style/styledComponents.ts';
 import usersData from '../assets/data/users.json';
-import { AuthContext } from '../context/AuthContextProvider';
+import { AuthContext } from '../context/AuthContextProvider.tsx';
 
 const LoginBackground = styled.div`
   height: 100vh;
