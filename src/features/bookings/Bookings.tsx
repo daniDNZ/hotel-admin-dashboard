@@ -64,15 +64,15 @@ function Bookings() {
     <div>
       <TableTabs>
         <ul className="table-tabs__list">
-          <li className="active-table-tab" id="defaultTab"><button type="button" onClick={(e) => { handleTabClick('fullName', '', (e.target as HTMLElement).parentNode); }}>All Bookings</button></li>
-          <li><button type="button" onClick={(e) => { handleTabClick('status', 'checkin', (e.target as HTMLElement).parentNode); }}>Checking In</button></li>
-          <li><button type="button" onClick={(e) => { handleTabClick('status', 'checkout', (e.target as HTMLElement).parentNode); }}>Checking Out</button></li>
-          <li><button type="button" onClick={(e) => { handleTabClick('status', 'inprogress', (e.target as HTMLElement).parentNode); }}>In Progress</button></li>
+          <li className="active-table-tab" id="defaultTab"><button type="button" onClick={(e: React.MouseEvent<HTMLButtonElement>) => { handleTabClick('fullName', '', (e.target as HTMLElement).parentNode); }}>All Bookings</button></li>
+          <li><button type="button" onClick={(e: React.MouseEvent<HTMLButtonElement>) => { handleTabClick('status', 'checkin', (e.target as HTMLElement).parentNode); }}>Checking In</button></li>
+          <li><button type="button" onClick={(e: React.MouseEvent<HTMLButtonElement>) => { handleTabClick('status', 'checkout', (e.target as HTMLElement).parentNode); }}>Checking Out</button></li>
+          <li><button type="button" onClick={(e: React.MouseEvent<HTMLButtonElement>) => { handleTabClick('status', 'inprogress', (e.target as HTMLElement).parentNode); }}>In Progress</button></li>
         </ul>
         <div className="table-tabs__sort">
-          <input type="search" name="customerName" id="customerName" placeholder="Search..." onChange={(e) => { handleSearchChange('fullName', e.target.value); }} />
+          <input type="search" name="customerName" id="customerName" placeholder="Search..." onChange={(e: React.ChangeEvent<HTMLInputElement>) => { handleSearchChange('fullName', e.target.value); }} />
           <div>
-            <select name="sortBookings" id="sortBookings" defaultValue="orderDate" onChange={(e) => setOrderBy(e.target.value)}>
+            <select name="sortBookings" id="sortBookings" defaultValue="orderDate" onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setOrderBy(e.target.value)}>
               <option value="fullName">Guest</option>
               <option value="orderDate">Order Date</option>
               <option value="checkIn">Check In</option>
@@ -97,7 +97,7 @@ function Bookings() {
         <tbody>
           {
             bookingsState.map((booking: IBooking) => (
-              <tr key={booking.id} onClick={(e) => checkIsNotAButton(e, () => navigate(`${booking.id}`))}>
+              <tr key={booking.id} onClick={(e: React.MouseEvent<HTMLElement>) => checkIsNotAButton(e, () => navigate(`${booking.id}`))}>
                 <td>
                   <span>{booking.fullName}</span>
                   <br />
