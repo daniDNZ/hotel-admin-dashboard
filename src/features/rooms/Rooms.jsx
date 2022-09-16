@@ -1,15 +1,13 @@
-import { useState, useEffect } from 'react';
+import update from 'immutability-helper';
+import { useCallback, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import checkIsNotAButton from '../../assets/functions';
 import {
-  Table, TableTabs, activeTableTabs, TableElementMenu,
+  Table, TableTabs, activeTableTabs,
 } from '../../components/common/Table';
-import { Button } from '../../style/styledComponents';
-import { deleteRoom, fetchRooms, selectRooms } from './roomsSlice';
+import RoomRow from './RoomRow';
+import { fetchRooms, selectRooms } from './roomsSlice';
 
 function Rooms() {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const roomsData = useSelector(selectRooms);
   const [roomsState, setRoomsState] = useState([]);
@@ -21,14 +19,6 @@ function Rooms() {
     activeTableTabs(parentNode);
     setFilterBy(filter);
     setSearchTerm(value);
-  };
-
-  const toggleElementMenu = (e) => {
-    const elementMenu = e.target.nextElementSibling;
-    // eslint-disable-next-line no-unused-expressions
-    elementMenu.style.display === 'block'
-      ? elementMenu.style.display = 'none'
-      : elementMenu.style.display = 'block';
   };
 
   useEffect(() => {
@@ -54,6 +44,25 @@ function Rooms() {
   useEffect(() => {
     dispatch(fetchRooms());
   }, [dispatch]);
+
+  // DnD
+  const moveRow = useCallback((dragIndex, hoverIndex) => {
+    setRoomsState((prevRows) => update(prevRows, {
+      $splice: [
+        [dragIndex, 1],
+        [hoverIndex, 0, prevRows[dragIndex]],
+      ],
+    }));
+  }, []);
+  const renderRow = useCallback((row, index) => (
+    <RoomRow
+      key={row.id}
+      index={index}
+      id={row.id}
+      room={row}
+      moveRow={moveRow}
+    />
+  ), []);
 
   return (
     <div>
@@ -87,51 +96,7 @@ function Rooms() {
         </thead>
         <tbody>
           {
-            roomsState.map((room) => (
-              <tr key={room.id} onClick={(e) => checkIsNotAButton(e, () => navigate(`${room.id}`))}>
-                <td>
-                  <span>
-                    #
-                    {room.id}
-                  </span>
-                  <br />
-                  <span>
-                    {room.type}
-                    {room.number}
-                  </span>
-                </td>
-                <td>
-                  {room.type}
-                </td>
-                <td>
-                  {room.number}
-                </td>
-                <td>
-                  {room.amenities.map((amenitie) => `${amenitie}, `)}
-                </td>
-                <td>
-                  {room.price}
-                  €
-                </td>
-                <td>
-                  {
-                    // eslint-disable-next-line max-len
-                    (parseFloat(room.price) - (parseFloat(room.price) * (parseFloat(room.discount) / 100))).toFixed(2)
-                  }
-                  €
-                </td>
-                <td>
-                  Available
-                </td>
-                <td>
-                  <button type="button" onClick={toggleElementMenu}>...</button>
-                  <TableElementMenu>
-                    <Button green type="button" onClick={() => navigate(`${room.id}/update`)}>Update</Button>
-                    <Button type="button" onClick={() => dispatch(deleteRoom(room.id))}>Delete</Button>
-                  </TableElementMenu>
-                </td>
-              </tr>
-            ))
+            roomsState.map((room, i) => renderRow(room, i))
           }
         </tbody>
       </Table>

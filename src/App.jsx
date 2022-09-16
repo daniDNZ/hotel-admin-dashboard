@@ -1,5 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import { useEffect, useContext } from 'react';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 import Login from './components/Login';
 import Messages from './features/messages/Messages';
 import NewRoom from './features/rooms/NewRoom';
@@ -23,31 +25,34 @@ function App() {
   }, [auth]);
 
   return (
-    <Routes>
-      <Route
-        path="/*"
-        element={(
-          <RequireAuth>
-            <Routes>
-              <Route element={<Layout />}>
-                <Route path="/" element={<Dashboard />} />
-                <Route path="bookings" element={<Bookings />} />
-                <Route path="bookings/:id" element={<Booking />} />
-                <Route path="bookings/new" element={<NewBooking />} />
-                <Route path="rooms" element={<Rooms />} />
-                <Route path="rooms/:id" element={<Room />} />
-                <Route path="rooms/:id/update" element={<UpdateRoom />} />
-                <Route path="rooms/new" element={<NewRoom />} />
-                <Route path="users" element={<Users />} />
-                <Route path="users/new" element={<NewUser />} />
-                <Route path="contact" element={<Messages />} />
-              </Route>
-            </Routes>
-          </RequireAuth>
+    <DndProvider backend={HTML5Backend}>
+
+      <Routes>
+        <Route
+          path="/*"
+          element={(
+            <RequireAuth>
+              <Routes>
+                <Route element={<Layout />}>
+                  <Route path="/" element={<Dashboard />} />
+                  <Route path="bookings" element={<Bookings />} />
+                  <Route path="bookings/:id" element={<Booking />} />
+                  <Route path="bookings/new" element={<NewBooking />} />
+                  <Route path="rooms" element={<Rooms />} />
+                  <Route path="rooms/:id" element={<Room />} />
+                  <Route path="rooms/:id/update" element={<UpdateRoom />} />
+                  <Route path="rooms/new" element={<NewRoom />} />
+                  <Route path="users" element={<Users />} />
+                  <Route path="users/new" element={<NewUser />} />
+                  <Route path="contact" element={<Messages />} />
+                </Route>
+              </Routes>
+            </RequireAuth>
         )}
-      />
-      <Route path="login" element={<Login />} />
-    </Routes>
+        />
+        <Route path="login" element={<Login />} />
+      </Routes>
+    </DndProvider>
   );
 }
 
