@@ -5,7 +5,9 @@
     "number": 22,
     "price": "128,25",
     "amenities": [
-      "3 Bed Space"
+      "3 Bed Space",
+      "2 Bathroom",
+      "Wi-Fi"
     ],
     "photos": "http://dummyimage.com/x.png/cc0000/ffffff",
     "description": "est donec odio justo sollicitudin ut suscipit a feugiat et eros vestibulum ac est lacinia nisi venenatis tristique fusce congue diam id ornare imperdiet sapien urna pretium",
@@ -19,7 +21,8 @@
     "number": 23,
     "price": "180,26",
     "amenities": [
-      "3 Bed Space"
+      "3 Bed Space",
+      "Wi-Fi"
     ],
     "photos": "http://dummyimage.com/x.png/5fa2dd/ffffff",
     "description": "cursus vestibulum proin eu mi nulla ac enim in tempor turpis nec euismod",
