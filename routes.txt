@@ -1,0 +1,18 @@
+Bookings:
+/bookings     -> Todos los bookings / eliminar
+/bookings/234 -> Un booking / editar / eliminar
+/bookings/new -> Nuevo booking
+
+Rooms: 
+/rooms     -> Todas las habitaciones / eliminar
+/rooms/234 -> Una habitación / editar / eliminar
+/rooms/new -> Nueva habitación
+
+Users: 
+/users     -> Todos los usuarios / eliminar
+/users/234 -> Un usuario / editar / eliminar
+/users/new -> Nuevo usuario
+
+Contact:
+/messages     -> Todos los mensajes / eliminar
+/messages/234 -> Un mensaje / editar / eliminar
