@@ -1,0 +1,31 @@
+{
+  "files": {
+    "main.css": "/hotel-admin-dashboard/static/css/main.072cecbc.css",
+    "main.js": "/hotel-admin-dashboard/static/js/main.cdef9e9e.js",
+    "static/js/787.c333cc04.chunk.js": "/hotel-admin-dashboard/static/js/787.c333cc04.chunk.js",
+    "static/media/usersIcon.svg": "/hotel-admin-dashboard/static/media/usersIcon.618d9c53403ec5684170019a13192c7c.svg",
+    "static/media/dashboardIcon.svg": "/hotel-admin-dashboard/static/media/dashboardIcon.2a76cd0a9f57ea4230825ee9eb5caf49.svg",
+    "static/media/cancel.svg": "/hotel-admin-dashboard/static/media/cancel.c0f974f24d55445a1895459fc539f639.svg",
+    "index.html": "/hotel-admin-dashboard/index.html",
+    "static/media/roomsIcon.svg": "/hotel-admin-dashboard/static/media/roomsIcon.6631055583442a14bb35c7b0e42b99aa.svg",
+    "static/media/bed.svg": "/hotel-admin-dashboard/static/media/bed.09834a929d2bfc1515a881bf50656f1e.svg",
+    "static/media/check-circle.svg": "/hotel-admin-dashboard/static/media/check-circle.e5b441736048a2153f09adcdb41196fd.svg",
+    "static/media/menuIcon.svg": "/hotel-admin-dashboard/static/media/menuIcon.910fa138e2742cffff2f196510a1a61b.svg",
+    "static/media/checkOut.svg": "/hotel-admin-dashboard/static/media/checkOut.0e91d981c23bf72b00d294be0f8d8b7f.svg",
+    "static/media/logoutIcon.svg": "/hotel-admin-dashboard/static/media/logoutIcon.1e4bafc8ebbb358600e8e5bfc4c81a07.svg",
+    "static/media/checkIn.svg": "/hotel-admin-dashboard/static/media/checkIn.3d8186bf26cda41dafd50a2b44a206db.svg",
+    "static/media/bookingsIcon.svg": "/hotel-admin-dashboard/static/media/bookingsIcon.287a7aedc3d0d20fc6ff416626f1b852.svg",
+    "static/media/bellIcon.svg": "/hotel-admin-dashboard/static/media/bellIcon.6cd0ac4bb537a73c00939feecb0a0f9f.svg",
+    "static/media/contactIcon.svg": "/hotel-admin-dashboard/static/media/contactIcon.d4e5eadbe6348de1097737f947d56835.svg",
+    "static/media/leftArrow.svg": "/hotel-admin-dashboard/static/media/leftArrow.06d755b1dcdb249e2d9a5e199f709192.svg",
+    "static/media/rightArrow.svg": "/hotel-admin-dashboard/static/media/rightArrow.954170a217693baef5a81ae3c80143da.svg",
+    "static/media/messageIcon.svg": "/hotel-admin-dashboard/static/media/messageIcon.003b8000ce72427d6ce5d4ca1ba80f88.svg",
+    "main.072cecbc.css.map": "/hotel-admin-dashboard/static/css/main.072cecbc.css.map",
+    "main.cdef9e9e.js.map": "/hotel-admin-dashboard/static/js/main.cdef9e9e.js.map",
+    "787.c333cc04.chunk.js.map": "/hotel-admin-dashboard/static/js/787.c333cc04.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.072cecbc.css",
+    "static/js/main.cdef9e9e.js"
+  ]
+}
