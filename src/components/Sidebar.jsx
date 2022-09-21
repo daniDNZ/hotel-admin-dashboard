@@ -7,9 +7,7 @@ import { Button, Logo } from '../style/styledComponents';
 
 const SidebarContainer = styled.div`
   width: 345px;
-  height: 100%;
   background-color: #ffffff;
-  box-shadow: 13px 3px 40px #00000005;
 
   padding-top: 32px;
 
