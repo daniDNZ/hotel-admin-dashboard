@@ -12,7 +12,6 @@ const AppWrapper = styled.div`
   justify-content: flex-start; */
 
   & .content-container {
-    width: 100%;
     min-width: 820px;
     min-height: 100vh;
     background-color: ${colors.bgGray};
