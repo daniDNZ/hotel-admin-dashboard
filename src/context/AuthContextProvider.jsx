@@ -5,22 +5,22 @@ export const AuthContext = createContext({});
 function AuthContextProvider({ children }) {
   const authReducer = (state, action) => {
     switch (action.type) {
-      case 'CHANGE_USER':
-        return { ...state, username: action.value.username };
-      case 'CHANGE_EMAIL':
-        return { ...state, email: action.value.email };
+      // case 'CHANGE_USER':
+      //   return { ...state, username: action.value.username };
+      // case 'CHANGE_EMAIL':
+      //   return { ...state, email: action.value.email };
       case 'LOGIN':
         return {
           status: true,
-          username: action.value.username,
           email: action.value.email,
+          token: action.value.token,
         };
       case 'LOGOUT':
       default:
         return {
           status: false,
-          username: '',
           email: '',
+          token: '',
         };
     }
   };

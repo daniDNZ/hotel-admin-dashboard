@@ -3,8 +3,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import colors from '../style/colors';
 import { Button, Logo } from '../style/styledComponents';
-import usersData from '../assets/data/users.json';
 import { AuthContext } from '../context/AuthContextProvider';
+import apiFetch from '../api-fetch/api-fetch';
 
 const LoginBackground = styled.div`
   height: 100vh;
@@ -47,14 +47,26 @@ function Login() {
   const location = useLocation();
   const from = location.state?.from?.pathname || '/';
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const userData = usersData.find((object) => object.email === inputs.user);
-    if (userData !== undefined) {
-      dispatchAuth({ type: 'LOGIN', value: { username: userData.fullName, email: userData.email } });
-      navigate(from, { replace: true });
-    } else {
-      // eslint-disable-next-line no-alert
+    try {
+      const req = {
+        url: 'login',
+        method: 'POST',
+        body: inputs,
+      };
+      const res = await apiFetch(req);
+      if (res.token) {
+        dispatchAuth({
+          type: 'LOGIN',
+          value: {
+            email: inputs.email,
+            token: res.token,
+          },
+        });
+        navigate(from, { replace: true });
+      }
+    } catch (err) {
       alert('Login failed');
       e.target.reset();
     }
@@ -73,7 +85,7 @@ function Login() {
         }}
         />
         <form onSubmit={handleSubmit}>
-          <input type="text" name="user" placeholder="User" onChange={handleChange} />
+          <input type="text" name="email" placeholder="Email" onChange={handleChange} />
           <input type="password" name="password" placeholder="Pass" onChange={handleChange} />
           <LoginButton green>Login</LoginButton>
         </form>
