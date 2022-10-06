@@ -2,6 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 import { useEffect, useContext } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
+import { ToastContainer } from 'react-toastify';
 import Login from './components/Login';
 import Messages from './features/messages/Messages';
 import NewRoom from './features/rooms/NewRoom';
@@ -17,6 +18,7 @@ import RequireAuth from './components/RequireAuth';
 import { AuthContext } from './context/AuthContextProvider';
 import Bookings from './features/bookings/Bookings';
 import UpdateRoom from './features/rooms/UpdateRoom';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 function App() {
   const { auth } = useContext(AuthContext);
@@ -52,6 +54,7 @@ function App() {
         />
         <Route path="login" element={<Login />} />
       </Routes>
+      <ToastContainer />
     </DndProvider>
   );
 }
