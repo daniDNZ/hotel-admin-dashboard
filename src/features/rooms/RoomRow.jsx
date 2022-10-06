@@ -7,7 +7,7 @@ import { checkIsNotAButton } from '../../assets/functions';
 import { TableElementMenu } from '../../components/common/Table';
 import { Button } from '../../style/styledComponents';
 import ItemTypes from './ItemTypes';
-import { deleteRoom } from './roomsSlice';
+import { deleteRoom, fetchRooms } from './roomsSlice';
 
 function RoomRow({
   id, room, moveRow, index,
@@ -71,6 +71,11 @@ function RoomRow({
       ? elementMenu.style.display = 'none'
       : elementMenu.style.display = 'block';
   };
+
+  const deleteThisRoom = () => {
+    dispatch(deleteRoom(room._id));
+    dispatch(fetchRooms());
+  };
   return (
     <tr ref={ref} style={{ opacity }} onClick={(e) => checkIsNotAButton(e, () => navigate(`${room._id}`))} data-handler-id={handlerId}>
       <td>
@@ -109,8 +114,8 @@ function RoomRow({
       <td>
         <button type="button" onClick={toggleElementMenu}>...</button>
         <TableElementMenu>
-          <Button green type="button" onClick={() => navigate(`${room.id}/update`)}>Update</Button>
-          <Button type="button" onClick={() => dispatch(deleteRoom(room.id))}>Delete</Button>
+          <Button green type="button" onClick={() => navigate(`${room._id}/update`)}>Update</Button>
+          <Button type="button" onClick={deleteThisRoom}>Delete</Button>
         </TableElementMenu>
       </td>
     </tr>
