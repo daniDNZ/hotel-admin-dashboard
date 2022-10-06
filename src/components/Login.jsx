@@ -67,7 +67,6 @@ function Login() {
         navigate(from, { replace: true });
       }
     } catch (err) {
-      alert('Login failed');
       e.target.reset();
     }
   };
