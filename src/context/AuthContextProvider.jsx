@@ -10,6 +10,7 @@ function AuthContextProvider({ children }) {
       // case 'CHANGE_EMAIL':
       //   return { ...state, email: action.value.email };
       case 'LOGIN':
+        localStorage.setItem('AUTH_DATA', JSON.stringify(action.value));
         return {
           status: true,
           email: action.value.email,
