@@ -1,4 +1,5 @@
 /* eslint-disable quote-props */
+import { toast } from 'react-toastify';
 import fetch from 'cross-fetch';
 import { HOST_DOMAIN } from '../.env';
 
@@ -17,13 +18,18 @@ export default async function apiFetch({ url, method, body = undefined }) {
     const res = await fetch(`${HOST_DOMAIN}${url}`, options);
 
     if (res.status >= 400) {
-      throw new Error('Bad response from server');
+      toast.error('Error 400');
+      throw new Error('');
+    }
+    if (res.status >= 500) {
+      toast.error('Server Error');
+      throw new Error('');
     }
 
     const data = await res.json();
 
     return data;
   } catch (err) {
-    return err;
+    return [];
   }
 }
