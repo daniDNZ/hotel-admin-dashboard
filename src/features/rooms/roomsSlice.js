@@ -1,7 +1,7 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable no-param-reassign */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import apiFetch from '../../api-fetch/api-fetch';
-import roomsJSON from '../../assets/data/rooms.json';
 
 const delay = async (data, ms) => {
   // eslint-disable-next-line no-promise-executor-return
@@ -36,16 +36,24 @@ export const fetchRoom = createAsyncThunk(
 export const deleteRoom = createAsyncThunk(
   'rooms/deleteRoom',
   async (id) => {
-    const oneRoom = roomsJSON.find((element) => element.id === id);
-    const room = await delay(oneRoom, 100);
-    return room;
+    const options = {
+      url: `rooms/${id}`,
+      method: 'DELETE',
+    };
+    await apiFetch(options);
+    return id;
   },
 );
 
 export const updateRoom = createAsyncThunk(
   'rooms/updateRoom',
   async (updatedRoom) => {
-    const room = await delay(updatedRoom, 100);
+    const options = {
+      url: `rooms/${updatedRoom._id}`,
+      method: 'PATCH',
+      body: updatedRoom,
+    };
+    const room = await apiFetch(options);
     return room;
   },
 );
@@ -92,9 +100,8 @@ export const roomsSlice = createSlice({
       .addCase(deleteRoom.pending, (state) => {
         state.status = 'loading';
       })
-      .addCase(deleteRoom.fulfilled, (state, action) => {
+      .addCase(deleteRoom.fulfilled, (state) => {
         state.status = 'fulfilled';
-        state.rooms = state.rooms.filter((room) => room.id !== action.payload.id);
       })
       .addCase(deleteRoom.rejected, (state) => {
         state.status = 'error';
