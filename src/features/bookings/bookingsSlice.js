@@ -1,5 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import apiFetch from '../../api-fetch/api-fetch';
 import bookingsJSON from '../../assets/data/bookings.json';
 
 const delay = async (data, ms) => {
@@ -11,7 +12,11 @@ const delay = async (data, ms) => {
 export const fetchBookings = createAsyncThunk(
   'bookings/fetchBookings',
   async () => {
-    const bookings = await delay(bookingsJSON, 100);
+    const options = {
+      url: 'bookings',
+      method: 'GET',
+    };
+    const bookings = await apiFetch(options);
     return bookings;
   },
 );
@@ -19,8 +24,11 @@ export const fetchBookings = createAsyncThunk(
 export const fetchBooking = createAsyncThunk(
   'bookings/fetchBooking',
   async (id) => {
-    const oneBooking = bookingsJSON.find((element) => element.id === Number(id));
-    const booking = await delay(oneBooking, 100);
+    const options = {
+      url: `bookings/${id}`,
+      method: 'GET',
+    };
+    const booking = await apiFetch(options);
     return booking;
   },
 );
