@@ -4,7 +4,7 @@ import { HOST_DOMAIN } from '../.env';
 
 export default async function apiFetch({ url, method, body = undefined }) {
   try {
-    const AUTH_DATA = localStorage.getItem('AUTH_DATA');
+    const AUTH_DATA = JSON.parse(localStorage.getItem('AUTH_DATA'));
     const options = {
       method,
       body: body ? JSON.stringify(body) : undefined,
