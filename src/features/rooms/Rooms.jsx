@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import update from 'immutability-helper';
 import { useCallback, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -9,7 +10,7 @@ import { fetchRooms, selectRooms } from './roomsSlice';
 
 function Rooms() {
   const dispatch = useDispatch();
-  const roomsData = useSelector(selectRooms);
+  const roomsData = useSelector(selectRooms).rooms;
   const [roomsState, setRoomsState] = useState([]);
   const [orderBy, setOrderBy] = useState('orderDate');
   const [filterBy, setFilterBy] = useState('type');
@@ -22,23 +23,25 @@ function Rooms() {
   };
 
   useEffect(() => {
-    const orderedFilteredRooms = roomsData.filter(
-      (room) => room[filterBy].toLowerCase().includes(searchTerm.toLowerCase()),
-    );
-    orderedFilteredRooms.sort((a, b) => {
-      if (orderBy === 'lowerPrice') {
-        if (parseFloat(a.price) > parseFloat(b.price)) return 1;
-        if (parseFloat(a.price) < parseFloat(b.price)) return -1;
-      } else if (orderBy === 'higherPrice') {
-        if (parseFloat(a.price) > parseFloat(b.price)) return -1;
-        if (parseFloat(a.price) < parseFloat(b.price)) return 1;
-      } else {
-        if (a[orderBy] > b[orderBy]) return 1;
-        if (a[orderBy] < b[orderBy]) return -1;
-      }
-      return 0;
-    });
-    setRoomsState(orderedFilteredRooms);
+    if (roomsData) {
+      const orderedFilteredRooms = roomsData.filter(
+        (room) => room[filterBy].toLowerCase().includes(searchTerm.toLowerCase()),
+      );
+      orderedFilteredRooms.sort((a, b) => {
+        if (orderBy === 'lowerPrice') {
+          if (parseFloat(a.price) > parseFloat(b.price)) return 1;
+          if (parseFloat(a.price) < parseFloat(b.price)) return -1;
+        } else if (orderBy === 'higherPrice') {
+          if (parseFloat(a.price) > parseFloat(b.price)) return -1;
+          if (parseFloat(a.price) < parseFloat(b.price)) return 1;
+        } else {
+          if (a[orderBy] > b[orderBy]) return 1;
+          if (a[orderBy] < b[orderBy]) return -1;
+        }
+        return 0;
+      });
+      setRoomsState(orderedFilteredRooms);
+    }
   }, [roomsData, orderBy, searchTerm]);
 
   useEffect(() => {
@@ -56,7 +59,7 @@ function Rooms() {
   }, []);
   const renderRow = useCallback((row, index) => (
     <RoomRow
-      key={row.id}
+      key={row._id}
       index={index}
       id={row.id}
       room={row}

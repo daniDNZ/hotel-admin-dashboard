@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -6,7 +7,7 @@ import { fetchRoom, selectRoom } from './roomsSlice';
 
 function Room() {
   const dispatch = useDispatch();
-  const room = useSelector(selectRoom);
+  const { room } = useSelector(selectRoom);
   const { id } = useParams();
 
   useEffect(() => {
@@ -25,11 +26,11 @@ function Room() {
           <div className="single-view__header">
             <div>
               <span className="single-view__title">
-                {`${room.type} ${room.number}`}
+                {`${room.type} Nº${room.number}`}
               </span>
               <span className="single-view__id">
                 #
-                {room.id}
+                {room._id}
               </span>
             </div>
             <button type="button" className="single-view__menu">...</button>

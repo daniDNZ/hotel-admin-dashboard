@@ -1,8 +1,9 @@
+/* eslint-disable no-underscore-dangle */
 import { useRef } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import checkIsNotAButton from '../../assets/functions';
+import { checkIsNotAButton } from '../../assets/functions';
 import { TableElementMenu } from '../../components/common/Table';
 import { Button } from '../../style/styledComponents';
 import ItemTypes from './ItemTypes';
@@ -71,16 +72,15 @@ function RoomRow({
       : elementMenu.style.display = 'block';
   };
   return (
-    <tr ref={ref} style={{ opacity }} onClick={(e) => checkIsNotAButton(e, () => navigate(`${room.id}`))} data-handler-id={handlerId}>
+    <tr ref={ref} style={{ opacity }} onClick={(e) => checkIsNotAButton(e, () => navigate(`${room._id}`))} data-handler-id={handlerId}>
       <td>
         <span>
-          #
-          {room.id}
+          {`${room.type} Nº${room.number}`}
         </span>
         <br />
         <span>
-          {room.type}
-          {room.number}
+          #
+          {room._id}
         </span>
       </td>
       <td>
