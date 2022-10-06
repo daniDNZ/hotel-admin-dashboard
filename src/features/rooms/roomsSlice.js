@@ -1,6 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-param-reassign */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
 import apiFetch from '../../api-fetch/api-fetch';
 
 const delay = async (data, ms) => {
@@ -41,6 +42,7 @@ export const deleteRoom = createAsyncThunk(
       method: 'DELETE',
     };
     await apiFetch(options);
+    toast.success('Room Deleted');
     return id;
   },
 );
@@ -54,6 +56,7 @@ export const updateRoom = createAsyncThunk(
       body: updatedRoom,
     };
     const room = await apiFetch(options);
+    toast.success('Room Updated');
     return room;
   },
 );
@@ -109,10 +112,8 @@ export const roomsSlice = createSlice({
       .addCase(updateRoom.pending, (state) => {
         state.status = 'loading';
       })
-      .addCase(updateRoom.fulfilled, (state, action) => {
+      .addCase(updateRoom.fulfilled, (state) => {
         state.status = 'fulfilled';
-        state.rooms = state.rooms.filter((room) => room.id !== action.payload.id);
-        state.rooms.push(action.payload);
       })
       .addCase(updateRoom.rejected, (state) => {
         state.status = 'error';
