@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable import/no-unresolved */
 import styled from 'styled-components';
 import { Navigation } from 'swiper';
@@ -132,11 +133,18 @@ function MessagesRow() {
   const dispatch = useDispatch();
   const [modalData, setModalData] = useState('');
   const [openModal, setOpenModal] = useState(false);
-  const messagesData = useSelector(selectMessages);
+  const messagesData = useSelector(selectMessages).messages;
+  const [messagesState, setMessagesState] = useState([]);
 
   useEffect(() => {
     dispatch(fetchMessages());
-  }, []);
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (messagesData) {
+      setMessagesState(messagesData);
+    }
+  }, [messagesData]);
 
   return (
     <>
@@ -150,8 +158,8 @@ function MessagesRow() {
           navigation
         >
           {
-          messagesData.map((message) => (
-            <SwiperSlide key={message.id}>
+          messagesState.map((message) => (
+            <SwiperSlide key={message._id}>
               <Message data={message} setModalData={setModalData} setOpenModal={setOpenModal} />
             </SwiperSlide>
           ))

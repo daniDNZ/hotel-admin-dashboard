@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Table, TableTabs, activeTableTabs } from '../../components/common/Table';
@@ -5,16 +6,24 @@ import { fetchUsers, selectUsers } from './usersSlice';
 
 function Users() {
   const dispatch = useDispatch();
-  const usersData = useSelector(selectUsers);
+  const usersData = useSelector(selectUsers).users;
   const [usersState, setUsersState] = useState([]);
   const [orderBy, setOrderBy] = useState('startDate');
   const [filterBy, setFilterBy] = useState('fullName');
   const [searchTerm, setSearchTerm] = useState('');
 
+  const buildRegex = (value) => (
+    value !== ''
+      ? new RegExp(`^${value}`, 'i')
+      : ''
+  );
+
   const handleTabClick = (filter, value, parentNode) => {
     activeTableTabs(parentNode);
     setFilterBy(filter);
-    const regex = new RegExp(`^${value}`, 'i');
+    const regex = typeof value === 'string'
+      ? buildRegex(value)
+      : value;
     setSearchTerm(regex);
   };
 
@@ -27,15 +36,19 @@ function Users() {
   };
 
   useEffect(() => {
-    const orderedFilteredUsers = usersData.filter(
-      (user) => user[filterBy].toLowerCase().match(searchTerm),
-    );
-    orderedFilteredUsers.sort((a, b) => {
-      if (a[orderBy] > b[orderBy]) return 1;
-      if (a[orderBy] < b[orderBy]) return -1;
-      return 0;
-    });
-    setUsersState(orderedFilteredUsers);
+    if (usersData) {
+      const orderedFilteredUsers = usersData.filter(
+        typeof searchTerm === 'string'
+          ? (user) => user[filterBy].toLowerCase().match(searchTerm)
+          : (user) => user[filterBy] === searchTerm,
+      );
+      orderedFilteredUsers.sort((a, b) => {
+        if (a[orderBy] > b[orderBy]) return 1;
+        if (a[orderBy] < b[orderBy]) return -1;
+        return 0;
+      });
+      setUsersState(orderedFilteredUsers);
+    }
   }, [usersData, orderBy, searchTerm]);
 
   useEffect(() => {
@@ -46,8 +59,8 @@ function Users() {
       <TableTabs>
         <ul className="table-tabs__list">
           <li className="active-table-tab" id="defaultTab"><button type="button" onClick={(e) => handleTabClick('fullName', '', e.target.parentNode)}>All Employee</button></li>
-          <li><button type="button" onClick={(e) => handleTabClick('state', 'active', e.target.parentNode)}>Active Employee</button></li>
-          <li><button type="button" onClick={(e) => handleTabClick('state', 'inactive', e.target.parentNode)}>Inactive Employee</button></li>
+          <li><button type="button" onClick={(e) => handleTabClick('status', true, e.target.parentNode)}>Active Employee</button></li>
+          <li><button type="button" onClick={(e) => handleTabClick('status', false, e.target.parentNode)}>Inactive Employee</button></li>
         </ul>
         <div className="table-tabs__sort">
           <input type="search" name="userName" id="userName" placeholder="Search..." onChange={(e) => { handleSearchChange('fullName', e.target.value); }} />
@@ -75,16 +88,15 @@ function Users() {
         <tbody>
           {
             usersState.map((user) => (
-              <tr key={user.id}>
+              <tr key={user._id}>
                 <td>
-                  <img src={user.photo} alt={`${user.fullName} profile pic`} />
-                  {user.photo}
+                  <img src={user.photo} alt={`${user.fullName} profile pic`} width="200px" />
                 </td>
                 <td>
                   {user.fullName}
                 </td>
                 <td>
-                  {user.id}
+                  {user._id}
                 </td>
                 <td>
                   {user.email}
@@ -100,7 +112,7 @@ function Users() {
                   {user.phone}
                 </td>
                 <td>
-                  {user.state}
+                  {user.status ? 'Active' : 'Inactive'}
                 </td>
                 <td>
                   <button type="button">Archive</button>
