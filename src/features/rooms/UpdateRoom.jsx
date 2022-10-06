@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -8,7 +9,7 @@ import { fetchRoom, selectRoom, updateRoom } from './roomsSlice';
 function UpdateRoom() {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const room = useSelector(selectRoom);
+  const { room } = useSelector(selectRoom);
   const [formData, setFormData] = useState({});
 
   const handleSubmit = (e) => {
@@ -34,14 +35,14 @@ function UpdateRoom() {
     setFormData(room);
   }, [room]);
 
-  if (!formData.id) {
+  if (formData === undefined || !formData._id) {
     return 'Loading...';
   }
 
   return (
     <div>
       <Subtitle>Update Room</Subtitle>
-      <StyledForm onSubmit={handleSubmit}>
+      <StyledForm>
         <label htmlFor="photos">
           Photos:
           <input type="text" name="photos" id="photos" defaultValue={formData.photos} onChange={(e) => setFormData({ ...formData, photos: e.target.value })} />
@@ -98,9 +99,7 @@ function UpdateRoom() {
             AC
           </label>
         </div>
-        <Button green>
-          <input type="submit" value="Modify" />
-        </Button>
+        <Button green onClick={handleSubmit}> Modify </Button>
       </StyledForm>
     </div>
   );
