@@ -1,12 +1,13 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { fetchRoom, selectRoom } from '../rooms/roomsSlice';
+import { dateBuilder } from '../../assets/functions';
+import { selectRoom } from '../rooms/roomsSlice';
 import { fetchBooking, selectBooking } from './bookingsSlice';
 
 function Booking() {
   const dispatch = useDispatch();
-  const booking = useSelector(selectBooking);
+  const { booking } = useSelector(selectBooking);
   const room = useSelector(selectRoom);
   const { id } = useParams();
 
@@ -14,11 +15,11 @@ function Booking() {
     dispatch(fetchBooking(id));
   }, []);
 
-  useEffect(() => {
-    dispatch(fetchRoom(booking.room));
-  }, [booking]);
+  // useEffect(() => {
+  //   dispatch(fetchRoom(booking.room));
+  // }, [booking]);
 
-  if (!room) {
+  if (!booking) {
     return 'Loading...';
   }
 
@@ -44,11 +45,11 @@ function Booking() {
         <div>
           <div>
             <span>Check In </span>
-            <span style={{ display: 'block' }}>{booking.checkIn}</span>
+            <span style={{ display: 'block' }}>{dateBuilder(booking.checkIn)}</span>
           </div>
           <div>
             <span>Check Out </span>
-            <span style={{ display: 'block' }}>{booking.checkOut}</span>
+            <span style={{ display: 'block' }}>{dateBuilder(booking.checkOut)}</span>
           </div>
         </div>
         <hr />

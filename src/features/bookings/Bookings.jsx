@@ -1,17 +1,17 @@
+/* eslint-disable no-underscore-dangle */
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import roomsData from '../../assets/data/rooms.json';
 import { Button } from '../../style/styledComponents';
 import Modal from '../../components/common/Modal';
 import { Table, TableTabs, activeTableTabs } from '../../components/common/Table';
 import { fetchBookings, selectBookings } from './bookingsSlice';
-import checkIsNotAButton from '../../assets/functions';
+import { checkIsNotAButton, dateBuilder } from '../../assets/functions';
 
 function Bookings() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const bookingsData = useSelector(selectBookings);
+  const bookingsData = useSelector(selectBookings).bookings;
   const [modalData, setModalData] = useState('');
   const [openModal, setOpenModal] = useState(false);
   const [bookingsState, setBookingsState] = useState([]);
@@ -39,15 +39,17 @@ function Bookings() {
   };
 
   useEffect(() => {
-    const orderedFilteredBookings = bookingsData.filter(
-      (booking) => booking[filterBy].toLowerCase().includes(searchTerm.toLowerCase()),
-    );
-    orderedFilteredBookings.sort((a, b) => {
-      if (a[orderBy] > b[orderBy]) return 1;
-      if (a[orderBy] < b[orderBy]) return -1;
-      return 0;
-    });
-    setBookingsState(orderedFilteredBookings);
+    if (bookingsData) {
+      const orderedFilteredBookings = bookingsData.filter(
+        (booking) => booking[filterBy].toLowerCase().includes(searchTerm.toLowerCase()),
+      );
+      orderedFilteredBookings.sort((a, b) => {
+        if (a[orderBy] > b[orderBy]) return 1;
+        if (a[orderBy] < b[orderBy]) return -1;
+        return 0;
+      });
+      setBookingsState(orderedFilteredBookings);
+    }
   }, [bookingsData, orderBy, searchTerm]);
 
   useEffect(() => {
@@ -91,23 +93,23 @@ function Bookings() {
         <tbody>
           {
             bookingsState.map((booking) => (
-              <tr key={booking.id} onClick={(e) => checkIsNotAButton(e, () => navigate(`${booking.id}`))}>
+              <tr key={booking._id} onClick={(e) => checkIsNotAButton(e, () => navigate(`${booking._id}`))}>
                 <td>
                   <span>{booking.fullName}</span>
                   <br />
                   <span>
                     #
-                    {booking.id}
+                    {booking._id}
                   </span>
                 </td>
                 <td>
-                  {booking.orderDate}
+                  {dateBuilder(booking.orderDate)}
                 </td>
                 <td>
-                  {booking.checkIn}
+                  {dateBuilder(booking.checkIn)}
                 </td>
                 <td>
-                  {booking.checkOut}
+                  {dateBuilder(booking.checkOut)}
                 </td>
                 <td>
                   <Button green onClick={() => throwModal(booking.specialRequest)}>
@@ -115,7 +117,7 @@ function Bookings() {
                   </Button>
                 </td>
                 <td>
-                  {roomsData.find((room) => room.id === booking.room).type}
+                  {/* {roomsData.find((room) => room.id === booking.room).type} */}
                 </td>
                 <td>
                   {booking.status}
