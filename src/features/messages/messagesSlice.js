@@ -1,5 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import apiFetch from '../../api-fetch/api-fetch';
 import messagesJSON from '../../assets/data/messages.json';
 
 const delay = async (data, ms) => {
@@ -11,7 +12,11 @@ const delay = async (data, ms) => {
 export const fetchMessages = createAsyncThunk(
   'messages/fetchMessages',
   async () => {
-    const messages = await delay(messagesJSON, 100);
+    const options = {
+      url: 'messages',
+      method: 'GET',
+    };
+    const messages = await apiFetch(options);
     return messages;
   },
 );
@@ -19,8 +24,11 @@ export const fetchMessages = createAsyncThunk(
 export const fetchMessage = createAsyncThunk(
   'messages/fetchMessage',
   async (id) => {
-    const oneMessage = messagesJSON.find((element) => element.id === Number(id));
-    const message = await delay(oneMessage, 100);
+    const options = {
+      url: `messages/${id}`,
+      method: 'GET',
+    };
+    const message = await apiFetch(options);
     return message;
   },
 );
