@@ -2,16 +2,16 @@
 import fetch from 'cross-fetch';
 import { HOST_DOMAIN } from '../.env';
 
-export default async function apiFetch({ url, method, body = '' }) {
+export default async function apiFetch({ url, method, body = undefined }) {
   try {
-    const token = localStorage.getItem('mirandaToken');
+    const AUTH_DATA = localStorage.getItem('AUTH_DATA');
     const options = {
       method,
-      body: JSON.stringify(body),
+      body: body ? JSON.stringify(body) : undefined,
       mode: 'cors',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`,
+        'Authorization': `Bearer ${AUTH_DATA !== null ? AUTH_DATA.token : ''}`,
       },
     };
     const res = await fetch(`${HOST_DOMAIN}${url}`, options);
@@ -20,11 +20,10 @@ export default async function apiFetch({ url, method, body = '' }) {
       throw new Error('Bad response from server');
     }
 
-    const result = await res.json();
+    const data = await res.json();
 
-    return result;
+    return data;
   } catch (err) {
-    console.error(err);
     return err;
   }
 }
